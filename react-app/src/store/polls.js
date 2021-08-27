@@ -1,4 +1,3 @@
-import { bindActionCreators } from "redux";
 
 // const CREATE = 'poll/CREATE';
 
@@ -8,13 +7,15 @@ import { bindActionCreators } from "redux";
 // })
 
 export const createPoll = (payload) => async (dispatch) => {
-  let poll_id
+  console.log(payload)
   const res = await fetch('/api/polls/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       "question": payload.question,
-      "user_id": payload.user_id
+      "user_id": payload.user_id,
+      // "answers": Object.assign({}, payload.answers),
+      "answers": payload.answers
     })
   })
 
@@ -49,18 +50,17 @@ export const createPoll = (payload) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
+    // console.log("logging data", data)
+    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
     console.log("logging data", data)
-    // return data
-  }
-  else if (!res.ok) {
-    const data = res.json();
     if (data.errors) {
       return data.errors;
     }
+  } else {
+    return ['An error occurred. Please try again.']
   }
-  // else {
-  //   return ['An error occurred. Please try again.'];
-  // }
 }
 
 export default function reducer(state = {}, action) {

@@ -1,12 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, IntegerField)
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, Length, ValidationError
 
-# def question_length(form, field):
-#   question = field.data
-#   if question.length > 255:
-#     raise ValidationError('Question length cannot exceed 255 characters.')
 
 class PollForm(FlaskForm):
-  question = StringField('question', validators=[DataRequired()])
+  question = StringField('Title', validators=[
+    DataRequired(),
+    Length(max=255, message='Title must be 255 characters or less.')
+    ])
   user_id = IntegerField('user_id', validators=[DataRequired()])

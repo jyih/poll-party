@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import * as pollActions from "../../store/polls"
+import * as answerActions from "../../store/answers"
+
 
 const PollForm = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,8 @@ const PollForm = () => {
       'question': question,
       'answers': answers,
     }));
-    if (data?.errors) {
+    if (data) {
+      console.log(data)
       setErrors(data);
     }
   }
@@ -38,9 +41,11 @@ const PollForm = () => {
   return (
     <form onSubmit={handleCreatePoll}>
       <div>
-        {errors?.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+        {errors?.question
+          // .map((error, ind) => (
+          //   <div key={ind}>{error}</div>
+          // ))
+        }
       </div>
       <div>
         <label>Title</label>
