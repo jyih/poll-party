@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import * as pollActions from "../../store/polls"
 
 const PollForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
   const [errors, setErrors] = useState([]);
   const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', ''])
+  const [answers, setAnswers] = useState(['', '', '']);
 
   const handleCreatePoll = async e => {
     e.preventDefault();
+    const data = await dispatch(pollActions.createPoll({
+      'user_id': user.id,
+      'question': question,
+      'answers': answers,
+    }));
+    if (data?.errors) {
+      setErrors(data);
+    }
   }
 
+  const updateAnswers = (e, index) => {
+    let newAnswers = [...answers];
+    newAnswers[index] = e.target.value;
+    return setAnswers(newAnswers);
+  }
+
+  const addAnswer = (e, index) => {
+    if (index == answers.length - 1) {
+      let newAnswers = [...answers, '']
+      return setAnswers(newAnswers);
+    }
+  }
 
   return (
     <form onSubmit={handleCreatePoll}>
       <div>
-        {errors.map((error, ind) => (
+        {errors?.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
@@ -34,19 +57,9 @@ const PollForm = () => {
             key={i}
             name={`answer ${i}`}
             value={answer}
-            placeholder='Choose an answer...'
-            onChange={(e, index = i) => {
-              console.log(index)
-              let newAnswers = [...answers];
-              newAnswers[index] = e.target.value;
-              return setAnswers(newAnswers);
-            }}
-            onClick={(e, index = i) => {
-              if (index == answers.length - 1) {
-                let newAnswers = [...answers, '']
-                return setAnswers(newAnswers);
-              }
-            }}
+            placeholder='Type an answer option...'
+            onChange={(e, index = i) => updateAnswers(e, index)}
+            onClick={(e, index = i) => addAnswer(e, index)}
           />
         })}
         <button>Create Poll</button>
