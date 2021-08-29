@@ -2,7 +2,6 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Poll, Answer
 from app.forms import PollForm
-from .auth_routes import validation_errors_to_error_messages
 
 poll_routes = Blueprint('polls', __name__)
 
@@ -17,9 +16,10 @@ def poll(id):
   return poll.to_dict()
 
 @poll_routes.route('/', methods=['POST'])
-# @login_required
+@login_required
 def poll_create():
-  # data = request.json
+  data = request.json
+  answers = data['answers']
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -28,9 +28,16 @@ def poll_create():
       user_id=form.data['user_id']
     )
     db.session.add(poll)
-    # db.session.flush()
-    # db.session.refresh(poll)
     db.session.commit()
-    # print (poll.to_dict())
+
+    for option in answers:
+      if option:
+        answer = Answer(
+          answer=option,
+          poll_id=poll.id
+        )
+        db.session.add(answer)
+
+    db.session.commit()
     return poll.to_dict()
-  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+  return form.errors

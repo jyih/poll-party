@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as pollActions from "../../store/polls"
 
 const PollForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector(state => state.session.user)
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState('');
   const [answers, setAnswers] = useState(['', '', '']);
 
@@ -17,19 +18,23 @@ const PollForm = () => {
       'question': question,
       'answers': answers,
     }));
+    console.log('return from dispatch:', data)
     if (data?.errors) {
-      setErrors(data);
+      setErrors(data.errors);
+    } else if (data?.id) {
+      history.push(`/polls/${data?.id}`)
     }
   }
 
   const updateAnswers = (e, index) => {
+    let answer = e.target.value;
     let newAnswers = [...answers];
-    newAnswers[index] = e.target.value;
+    newAnswers[index] = answer;
     return setAnswers(newAnswers);
   }
 
   const addAnswer = (e, index) => {
-    if (index == answers.length - 1) {
+    if (index === answers.length - 1) {
       let newAnswers = [...answers, '']
       return setAnswers(newAnswers);
     }
@@ -38,25 +43,27 @@ const PollForm = () => {
   return (
     <form onSubmit={handleCreatePoll}>
       <div>
-        {errors?.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
+        <label>{errors?.question}</label>
         <label>Title</label>
         <input
           name='question'
           type='text'
           value={question}
-          onChange={e => setQuestion(e.target.value)}
+          required={true}
           placeholder='Type your question here...'
+          onChange={e => setQuestion(e.target.value)}
         />
+        {/* {answerError &&
+          <label>Answer length cannot exceed 255 characters.</label>
+        } */}
         <label>Answer Options</label>
         {answers.map((answer, i) => {
           return <input
             key={i}
             name={`answer ${i}`}
             value={answer}
+            required={i < 2}
+            maxLength='255'
             placeholder='Type an answer option...'
             onChange={(e, index = i) => updateAnswers(e, index)}
             onClick={(e, index = i) => addAnswer(e, index)}
@@ -64,7 +71,6 @@ const PollForm = () => {
         })}
         <button>Create Poll</button>
       </div>
-
     </form>
   )
 }
