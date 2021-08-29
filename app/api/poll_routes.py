@@ -1,8 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Poll, Answer
-from app.forms import PollForm, AnswerForm
-# from .auth_routes import validation_errors_to_error_messages
+from app.forms import PollForm
 
 poll_routes = Blueprint('polls', __name__)
 
@@ -17,14 +16,11 @@ def poll(id):
   return poll.to_dict()
 
 @poll_routes.route('/', methods=['POST'])
-# @login_required
+@login_required
 def poll_create():
   data = request.json
-  print('request data', data)
-  print('request data.answers', data['answers'])
   answers = data['answers']
   form = PollForm()
-  print ('bakcend form', form.data)
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     poll = Poll(
