@@ -44,7 +44,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <Route path='/create-poll' exact={true}>
+        <Route path='/create' exact={true}>
           <PollForm />
         </Route>
       </Switch>
