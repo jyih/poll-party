@@ -47,13 +47,17 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route path='/create' exact={true}>
-          <PollForm />
+          {/* <PollForm /> */}
+          <PollForm createPoll={true} />
         </Route>
         <Route path='/polls/:pollId/' exact={true}>
           <VoteForm />
         </Route>
         <Route path='/polls/:pollId/results' exact={true}>
           <PollResults />
+        </Route>
+        <Route path='/polls/:pollId/edit' exact={true}>
+          <PollForm createPoll={false} />
         </Route>
       </Switch>
     </BrowserRouter>
