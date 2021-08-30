@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import * as pollActions from "../../store/polls"
-
 
 const PollResults = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const [poll, setPoll] = useState({});
-  // const poll = useSelector(state => state.polls.current)
+  const poll = useSelector(state => state.poll)
 
   useEffect(() => {
-    if (!params) {
-      return;
-    }
-    // const data = await dispatch(pollActions.getPoll(params.pollId))
     (async () => {
-      const res = await fetch(`/api/polls/${params.pollId}`)
-      const data = await res.json();
-      console.log('data:', data)
-      setPoll(data)
+      await dispatch(pollActions.getPoll(params.pollId))
     })()
-  }, [params])
+  }, [dispatch, params])
 
-  useEffect(() => {
-    console.log('poll state:', poll)
-  }, [poll])
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    history.push(`/polls/${params.pollId}`)
+  }
 
   return (
     <>
+      <div>Results</div>
       <ul>
         <li>
           {poll?.question}
@@ -40,11 +33,12 @@ const PollResults = () => {
               Answer: {answer?.answer}
             </li>
             <li>
-              Votes: {answer?.votes.length}
+              Votes: {answer?.votes?.length}
             </li>
           </div>
         ))}
       </ul>
+      <button onClick={e => handleOnClick(e)}>Back to Poll</button>
     </>
   );
 }
