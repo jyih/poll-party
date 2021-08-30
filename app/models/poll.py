@@ -8,7 +8,7 @@ class Poll(db.Model):
     question = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    answers = db.relationship('Answer')
+    answers = db.relationship('Answer', cascade="all, delete, delete-orphan")
 
     def to_dict(self):
         return {

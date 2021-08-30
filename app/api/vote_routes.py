@@ -1,3 +1,4 @@
+from app.api.auth_routes import login
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Vote, Poll
@@ -18,19 +19,18 @@ def vote(id):
 @login_required
 def vote_cast():
   data = request.json
+  print('request:', request)
+  print('data:', data)
   user_id = data['user_id']
   poll_id = data['poll_id']
   answer_id = data['answer_id']
 
   vote = Vote.get_by_user_poll(user_id, poll_id)
-  print('vote:', vote)
   if vote:
-    print('yes vote')
     vote.answer_id = answer_id
   else:
     poll = Poll.query.get(poll_id)
     if poll:
-      print('no vote')
       vote = Vote(
         user_id=user_id,
         answer_id=answer_id,
@@ -42,3 +42,12 @@ def vote_cast():
 
   db.session.commit()
   return vote.to_dict()
+
+@vote_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def vote_delete(id):
+  print('entered delete route')
+  vote = Vote.query.get(id)
+  db.session.delete(vote)
+  db.session.commit()
+  return {'message': f'Vote ${id} deleted'}

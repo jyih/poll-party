@@ -17,9 +17,6 @@ class Vote(db.Model):
             'poll_id': self.poll_id
         }
 
-    def change(self, answer_id):
-        pass
-
     @staticmethod
     def get_by_user_poll(user_id, poll_id):
         votes = Vote.query.filter(
