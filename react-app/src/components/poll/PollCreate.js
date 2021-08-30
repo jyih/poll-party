@@ -11,7 +11,7 @@ const PollCreate = () => {
 
   useEffect(() => {
     (async () => {
-      await dispatch(pollActions.noPoll())
+      await dispatch(pollActions.unsetPoll())
     })()
   }, [dispatch])
 

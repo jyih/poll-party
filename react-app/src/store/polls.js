@@ -11,8 +11,8 @@ const unset = () => ({
   type: UNSET_POLL
 })
 
-export const getPoll = (payload) => async (dispatch) => {
-  const res = await fetch(`/api/polls/${payload}`)
+export const getPoll = (id) => async (dispatch) => {
+  const res = await fetch(`/api/polls/${id}`)
 
   if (res.ok) {
     const data = await res.json()
@@ -24,7 +24,7 @@ export const getPoll = (payload) => async (dispatch) => {
   }
 }
 
-export const noPoll = () => async (dispatch) => {
+export const unsetPoll = () => async (dispatch) => {
   dispatch(unset())
 }
 
@@ -38,10 +38,32 @@ export const createPoll = (payload) => async (dispatch) => {
       "answers": payload.answers
     })
   })
-
   if (res.ok) {
     const data = await res.json();
-    dispatch(set(data))
+    dispatch(set(data));
+    if (data.errors) {
+      return data.errors;
+    }
+    return data;
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
+export const editPoll = (payload, id) => async (dispatch) => {
+  console.log(payload.answers)
+  const res = await fetch(`/api/polls/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      "question": payload.question,
+      "user_id": payload.user_id,
+      "answers": payload.answers
+    })
+  })
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(set(data));
     if (data.errors) {
       return data.errors;
     }
@@ -61,7 +83,6 @@ export const votePoll = (payload) => async (dispatch) => {
       "answer_id": payload.answer_id
     })
   })
-
   if (res.ok) {
     const data = await res.json();
     if (data.errors) {
@@ -71,7 +92,22 @@ export const votePoll = (payload) => async (dispatch) => {
   } else {
     return ['An error occurred. Please try again.']
   }
+}
 
+export const deletePoll = (id) => async (dispatch) => {
+  const res = await fetch(`/api/polls/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (res.ok) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+    return data;
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 }
 
 const initialState = { question: '', answers: ['', '', ''] }
