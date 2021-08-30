@@ -43,7 +43,7 @@ def poll_create():
   return form.errors
 
 @poll_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
+@login_required
 def poll_delete(id):
   poll = Poll.query.get(id)
   db.session.delete(poll)
