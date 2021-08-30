@@ -9,6 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import PollForm from './components/poll/PollForm';
+import VoteForm from './components/poll/VoteForm';
+import PollResults from './components/poll/PollResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +48,12 @@ function App() {
         </ProtectedRoute>
         <Route path='/create' exact={true}>
           <PollForm />
+        </Route>
+        <Route path='/polls/:pollId/' exact={true}>
+          <VoteForm />
+        </Route>
+        <Route path='/polls/:pollId/results' exact={true}>
+          <PollResults />
         </Route>
       </Switch>
     </BrowserRouter>
