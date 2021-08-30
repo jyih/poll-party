@@ -43,7 +43,7 @@ def poll_create():
   return form.errors
 
 @poll_routes.route('/<int:id>', methods=['PUT'])
-# @login_required
+@login_required
 def poll_edit(id):
   data = request.json
   answers = data['answers']
@@ -56,8 +56,15 @@ def poll_edit(id):
 
     for idx, option in enumerate(answers):
       if option:
-        answer = poll.answers[idx]
-        answer.answer=option
+        if idx < len(poll.answers):
+          answer = poll.answers[idx]
+          answer.answer=option
+        else:
+          answer = Answer(
+            answer=option,
+            poll_id=poll.id
+          )
+          db.session.add(answer)
 
     db.session.commit()
     return poll.to_dict()

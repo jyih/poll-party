@@ -13,6 +13,11 @@ const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
   // const [previousAnswer, setPreviousAnswer] = useState(0)
   // const [refresh, setRefresh] = useState(true)
 
+  if (!user) {
+    history.push(`/login`)
+    // return <Redirect to='/login' />;
+  }
+
   useEffect(() => {
     (async () => {
       const data = await dispatch(pollActions.getPoll(params.pollId))
@@ -23,7 +28,7 @@ const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
     // console.log('previous answer:', previousAnswer)
     // setSelectedAnswer(previousAnswer)
     // console.log('selected answer', selectedAnswer)
-  }, [dispatch, params, user.votes])
+  }, [dispatch, params, user?.votes])
 
   const handleVote = async (e) => {
     e.preventDefault()
