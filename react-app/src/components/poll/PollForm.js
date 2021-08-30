@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as pollActions from "../../store/polls"
 
-const PollForm = () => {
+const PollForm = ({ poll = { question: '', answers: ['', '', ''] } }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(state => state.session.user)
   const [errors, setErrors] = useState({});
-  const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', '']);
+  const [question, setQuestion] = useState(poll.question);
+  const [answers, setAnswers] = useState(poll.answers);
 
-  const handleCreatePoll = async e => {
+  const handleCreatePoll = async (e) => {
     e.preventDefault();
     const data = await dispatch(pollActions.createPoll({
       'user_id': user.id,
@@ -41,8 +41,8 @@ const PollForm = () => {
   }
 
   return (
-    <form onSubmit={handleCreatePoll}>
-      <div>
+    <div>
+      <form onSubmit={handleCreatePoll}>
         <label>{errors?.question}</label>
         <label>Title</label>
         <input
@@ -70,8 +70,8 @@ const PollForm = () => {
           />
         })}
         <button>Create Poll</button>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

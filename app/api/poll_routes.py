@@ -15,7 +15,7 @@ def poll(id):
   poll = Poll.query.get(id)
   return poll.to_dict()
 
-@poll_routes.route('/', methods=['POST'])
+@poll_routes.route('/', methods=['POST', 'PATCH'])
 @login_required
 def poll_create():
   data = request.json
@@ -41,3 +41,11 @@ def poll_create():
     db.session.commit()
     return poll.to_dict()
   return form.errors
+
+@poll_routes.route('/<int:id>', methods=['DELETE'])
+# @login_required
+def poll_delete(id):
+  poll = Poll.query.get(id)
+  db.session.delete(poll)
+  db.session.commit()
+  return {'message': f'Poll ${id} deleted'}

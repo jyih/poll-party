@@ -7,6 +7,33 @@ import LogoutButton from './auth/LogoutButton';
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
 
+  let sessionLinks =
+    user ? (
+      <div>
+        <li>
+          <NavLink to='/create' exact={true} activeClassName='active'>
+            Create Poll
+          </NavLink>
+        </li>
+        <li>
+          <LogoutButton />
+        </li>
+      </div>
+    ) : (
+      <div>
+        <li>
+          <NavLink to='/login' exact={true} activeClassName='active'>
+            Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/sign-up' exact={true} activeClassName='active'>
+            Sign Up
+          </NavLink>
+        </li>
+      </div>
+    );
+
   return (
     <nav>
       <ul>
@@ -15,29 +42,12 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {!user &&
-          <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </li>
-        }{!user &&
-          <li>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </li>
-        }
         <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </li>
-        {user &&
-          <li>
-            <LogoutButton />
-          </li>
-        }
+        {sessionLinks}
       </ul>
     </nav>
   );

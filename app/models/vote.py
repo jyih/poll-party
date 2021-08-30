@@ -16,3 +16,11 @@ class Vote(db.Model):
             'answer_id': self.answer_id,
             'poll_id': self.poll_id
         }
+
+    @staticmethod
+    def get_by_user_poll(user_id, poll_id):
+        votes = Vote.query.filter(
+            (Vote.poll_id == poll_id) &
+            (Vote.user_id == user_id)
+        ).first()
+        return votes
