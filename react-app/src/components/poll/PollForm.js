@@ -22,7 +22,7 @@ const PollForm = ({ createPoll = true }) => {
           await dispatch(pollActions.noPoll())
       })()
     }
-  }, [dispatch, params])
+  }, [dispatch, params, createPoll])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
