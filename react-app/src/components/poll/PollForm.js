@@ -14,28 +14,37 @@ const PollForm = ({ createPoll = true }) => {
   const [answers, setAnswers] = useState(poll.answers.map(answer => answer.answer));
 
   useEffect(() => {
-    if (params) {
-      (async () => {
-        if (createPoll)
-          await dispatch(pollActions.getPoll(params.pollId))
-        else
-          await dispatch(pollActions.noPoll())
-      })()
-    }
+    (async () => {
+      if (createPoll)
+        await dispatch(pollActions.unsetPoll())
+      else
+        await dispatch(pollActions.getPoll(params.pollId))
+    })()
+    console.log(createPoll)
   }, [dispatch, params, createPoll])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(pollActions.createPoll({
+    const payload = {
       'user_id': user.id,
       'question': question,
       'answers': answers,
-    }));
+    }
+    const data = createPoll
+      ? await dispatch(pollActions.createPoll(payload))
+      : await dispatch(pollActions.editPoll(payload, params.pollId));
+
     if (data?.errors) {
       setErrors(data.errors);
     } else if (data?.id) {
       history.push(`/polls/${data?.id}`)
     }
+  }
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await dispatch(pollActions.deletePoll)
+    history.push(`/`)
   }
 
   const handleCancel = (e) => {
@@ -98,6 +107,7 @@ const PollForm = ({ createPoll = true }) => {
               <button onClick={e => addAnswer(e, answers.length - 1)}>Add Option</button>
               <div>
                 <button onClick={e => handleSubmit(e)}>Save Changes</button>
+                <button onClick={e => handleDelete(e)}>Delete Post</button>
                 <button onClick={e => handleCancel(e)}>Cancel</button>
               </div>
             </div>
