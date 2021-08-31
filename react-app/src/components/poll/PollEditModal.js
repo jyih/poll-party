@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../context/Modal'
 import PollEdit from './PollEdit';
 
-function PollEditModal() {
+function PollEditModal({ setRefresh }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -10,7 +10,9 @@ function PollEditModal() {
       <button onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <PollEdit handleCancel={() => setShowModal(false)} />
+          <PollEdit
+            handleCancel={() => setShowModal(false)}
+          />
         </Modal>
       )}
     </>

@@ -9,18 +9,19 @@ const VoteForm = () => {
   const history = useHistory();
   const params = useParams();
   const user = useSelector(state => state.session.user)
-  const [poll, setPoll] = useState({});
+  const poll = useSelector(state => state.poll)
+  // const [poll, setPoll] = useState({});
   const [selectedOption, setSelectedOption] = useState(0)
   // const [previousOption, setPreviousOption] = useState(0)
-  // const [refresh, setRefresh] = useState(true)
+  const [refresh, setRefresh] = useState(true)
 
 
   useEffect(() => {
     (async () => {
-      const data = await dispatch(pollActions.getPoll(params.pollId))
-      setPoll(data)
+      await dispatch(pollActions.getPoll(params.pollId))
+      // setPoll(data)
     })()
-  }, [dispatch, params, user?.votes])
+  }, [dispatch, params])
 
   const handleVote = async (e) => {
     e.preventDefault()

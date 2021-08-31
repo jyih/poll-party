@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -57,9 +57,10 @@ function App() {
         <Route path='/polls/:pollId/results' exact={true}>
           <PollResults />
         </Route>
-        <Route path='/polls/:pollId/edit' exact={true}>
-          <PollEdit />
-        </Route>
+        {/* <Route path='/polls/:pollId/edit' exact={true}>
+          <PollEdit handleCancel={(e) => <Redirect to='/polls/:pollId' />}
+          />
+        </Route> */}
 
       </Switch>
     </BrowserRouter>

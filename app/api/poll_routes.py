@@ -53,7 +53,7 @@ def poll_edit(id):
     poll = Poll.query.get(id)
     poll.question=form.data['question']
     poll.user_id=form.data['user_id']
-    db.session.commit()
+    # db.session.commit()
 
     for (idx, answer) in enumerate(options):
       if answer:
@@ -71,7 +71,7 @@ def poll_edit(id):
           db.session.add(answer)
 
     db.session.commit()
-    return poll.to_dict()
+    return poll.get_options()
   return form.errors
 
 @poll_routes.route('/<int:id>', methods=['DELETE'])

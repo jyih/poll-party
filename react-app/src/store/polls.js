@@ -19,7 +19,6 @@ export const getPoll = (id) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    // data.options = data.options.map(option => option.answer)
     dispatch(set(data));
     return data;
   }
@@ -121,7 +120,7 @@ const initialState = { question: '', options: ['', '', ''] }
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_POLL:
-      return { ...state, ...action.payload }
+      return action.payload
     case UNSET_POLL:
       return initialState
     default:
