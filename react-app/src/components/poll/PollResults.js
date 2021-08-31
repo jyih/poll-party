@@ -23,21 +23,21 @@ const PollResults = () => {
   return (
     <>
       <div>Results</div>
-      <ul>
-        <li>
-          {poll?.question}
-        </li>
-        {poll?.answers?.map(answer => (
-          <div key={answer.id}>
-            <li>
-              Answer: {answer?.answer}
-            </li>
-            <li>
-              Votes: {answer?.votes?.length}
-            </li>
-          </div>
-        ))}
-      </ul>
+      {/* <div> */}
+      <div>
+        {poll?.question}
+      </div>
+      {poll?.answers?.map(answer => (
+        <ul key={answer.id}>
+          <li key={answer.answer}>
+            Answer: {answer.answer}
+          </li>
+          <li key={answer.votes?.length}>
+            Votes: {answer.votes?.length}
+          </li>
+        </ul>
+      ))}
+      {/* </div> */}
       <button onClick={e => handleOnClick(e)}>Back to Poll</button>
     </>
   );

@@ -4,15 +4,17 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
+  // const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
+  const poll = useSelector(state => state.poll)
   const dispatch = useDispatch();
 
-  const onLogin = async (e) => {
+  const onLogin = async (e, pEmail = email, pPassword = password) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(pEmail, pPassword));
     if (data) {
       setErrors(data);
     }
@@ -27,7 +29,9 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return poll
+      ? <Redirect to={`/polls/${poll?.id}`} />
+      : <Redirect to='/' />;
   }
 
   return (
@@ -56,7 +60,12 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <div>
+          <button type='submit'>Login</button>
+        </div>
+        <div>
+          <button onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
+        </div>
       </div>
     </form>
   );

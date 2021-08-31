@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as pollActions from "../../store/polls"
+import PollEditModal from './PollEditModal';
 
-const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
+const VoteForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -13,21 +14,12 @@ const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
   // const [previousAnswer, setPreviousAnswer] = useState(0)
   // const [refresh, setRefresh] = useState(true)
 
-  if (!user) {
-    history.push(`/login`)
-    // return <Redirect to='/login' />;
-  }
 
   useEffect(() => {
     (async () => {
       const data = await dispatch(pollActions.getPoll(params.pollId))
       setPoll(data)
     })()
-    // console.log('user.votes:', user.votes)
-    // const previousAnswer = user.votes.find(vote => vote.poll_id === parseInt(params.pollId)).answer_id
-    // console.log('previous answer:', previousAnswer)
-    // setSelectedAnswer(previousAnswer)
-    // console.log('selected answer', selectedAnswer)
   }, [dispatch, params, user?.votes])
 
   const handleVote = async (e) => {
@@ -46,21 +38,28 @@ const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
     history.push(`/polls/${params.pollId}/results`)
 
   }
-  const handleEdit = (e) => {
+
+  // const handleEdit = (e) => {
+  //   e.preventDefault()
+  //   history.push(`/polls/${params.pollId}/edit`)
+  // }
+
+  const handleToLogin = (e) => {
     e.preventDefault()
-    history.push(`/polls/${params.pollId}/edit`)
+    history.push(`/login`)
   }
 
   return (
     <div>
-      <p>{poll?.question}</p>
+      <div>{poll?.question}</div>
+      <div>Choose one answer:</div>
       <form onSubmit={handleVote}>
         {poll?.answers?.map(answer => (
           <div key={answer.id} >
             <input
               type="radio"
               name='poll-answer'
-              id={`answer${answers.id}`}
+              id={`answer${answer.id}`}
               value={answer.id}
               required
               // checked={selectedAnswer === answer.id}
@@ -69,10 +68,14 @@ const VoteForm = ({ answers = ['default 1', 'default 2', 'default 3'] }) => {
             {answer.answer}
           </div>
         ))}
-        <button>Vote</button>
+        {user
+          ? <button type='submit'>Vote</button>
+          : <button onClick={e => handleToLogin(e)}>Log In to Vote</button>
+        }
       </form>
       <button onClick={e => handleResults(e)}>Results</button>
-      <button onClick={e => handleEdit(e)}>Edit</button>
+      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
+      <PollEditModal />
     </div >
   );
 }

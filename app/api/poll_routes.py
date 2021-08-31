@@ -46,6 +46,9 @@ def poll_create():
 @login_required
 def poll_edit(id):
   data = request.json
+  # print('''
+  # backend data:''', data,'''
+  # ''')
   answers = data['answers']
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -53,20 +56,46 @@ def poll_edit(id):
     poll = Poll.query.get(id)
     poll.question=form.data['question']
     poll.user_id=form.data['user_id']
+    db.session.commit()
 
-    for idx, option in enumerate(answers):
+    print(f'''******************************
+        enumerate${enumerate(answers)}
+        ******************************''')
+    for (idx, option) in enumerate(answers):
+    # for (idx, option) in answers:
+      print(f'''******************************
+        idx, option: {idx, option}
+        ******************************''')
       if option:
         if idx < len(poll.answers):
+          print(f'''******************************
+            JUST Option {option['answer']}
+            ******************************''')
           answer = poll.answers[idx]
-          answer.answer=option
+          answer.answer = option['answer']
+          print(f'''******************************
+            entered IF of {answer.answer}
+            ******************************''')
+          db.session.add(answer)
+          db.session.commit()
+
         else:
           answer = Answer(
             answer=option,
             poll_id=poll.id
           )
           db.session.add(answer)
+          print(f'''******************************
+            entered ELSE of ${answer}
+            ******************************''')
 
+    print('''******************************
+        prior to commit
+        ******************************''')
     db.session.commit()
+    print('''******************************
+        session.committed
+        ******************************''')
     return poll.to_dict()
   return form.errors
 

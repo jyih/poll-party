@@ -5,12 +5,13 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-import { authenticate } from './store/session';
-import PollForm from './components/poll/PollForm';
+import UsersList from './components/user/UsersList';
+import User from './components/user/User';
+import * as sessionActions from './store/session';
 import VoteForm from './components/poll/VoteForm';
 import PollResults from './components/poll/PollResults';
+import PollCreate from './components/poll/PollCreate';
+import PollEdit from './components/poll/PollEdit';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(sessionActions.authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -46,9 +47,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+
         <Route path='/create' exact={true}>
-          {/* <PollForm /> */}
-          <PollForm createPoll={true} />
+          <PollCreate />
         </Route>
         <Route path='/polls/:pollId/' exact={true}>
           <VoteForm />
@@ -57,8 +58,9 @@ function App() {
           <PollResults />
         </Route>
         <Route path='/polls/:pollId/edit' exact={true}>
-          <PollForm createPoll={false} />
+          <PollEdit />
         </Route>
+
       </Switch>
     </BrowserRouter>
   );
