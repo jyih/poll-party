@@ -46,9 +46,9 @@ def poll_create():
 @login_required
 def poll_edit(id):
   data = request.json
-  # print('''
-  # backend data:''', data,'''
-  # ''')
+  print('''
+  backend data:''', data,'''
+  ''')
   options = data['options']
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -60,20 +60,25 @@ def poll_edit(id):
 
     print(f'''******************************
         options: {options}
-        ******************************''')
+******************************''')
     for (idx, answer) in enumerate(options):
-    # for (idx, option) in options:
       print(f'''******************************
         idx, answer: {idx, answer}
-        ******************************''')
+******************************''')
       if answer:
         if idx < len(poll.options):
           print(f'''******************************
-            JUST answer {answer}
-            ******************************''')
+            poll.options: {poll.options} [{idx}]
+******************************''')
           option = poll.options[idx]
+          print(f'''******************************
+            assigning options.answer: {option.answer} = {answer}
+******************************''')
           option.answer = answer
-          # db.session.add(option)
+          print(f'''******************************
+            result: {option.id}: {option.answer}
+******************************''')
+          db.session.add(option)
           db.session.commit()
 
         else:
@@ -84,15 +89,15 @@ def poll_edit(id):
           db.session.add(answer)
           print(f'''******************************
             entered ELSE of ${answer}
-            ******************************''')
+******************************''')
 
     print('''******************************
         prior to commit
-        ******************************''')
+******************************''')
     db.session.commit()
     print('''******************************
         session.committed
-        ******************************''')
+******************************''')
     return poll.to_dict()
   return form.errors
 

@@ -32,7 +32,7 @@ const PollEdit = ({ handleCancel }) => {
       setErrors(data.errors);
     }
     else {
-      history.push(`/polls/${data?.id}`)
+      // history.push(`/polls/${data?.id}`)
       handleCancel(e)
     }
   }
