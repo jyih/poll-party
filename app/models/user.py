@@ -11,8 +11,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    polls = db.relationship('Poll')
-    votes = db.relationship('Vote')
+    polls = db.relationship('Poll', order_by='Poll.id')
+    votes = db.relationship('Vote', order_by='Vote.id')
 
     @property
     def password(self):
