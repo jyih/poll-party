@@ -27,13 +27,13 @@ const PollResults = () => {
       <div>
         {poll?.question}
       </div>
-      {poll?.answers?.map(answer => (
-        <ul key={answer.id}>
-          <li key={answer.answer}>
-            Answer: {answer.answer}
+      {poll?.options?.map(option => (
+        <ul key={option.id}>
+          <li key={option.answer}>
+            Option: {option.answer}
           </li>
-          <li key={answer.votes?.length}>
-            Votes: {answer.votes?.length}
+          <li key={option.votes?.length}>
+            Votes: {option.votes?.length}
           </li>
         </ul>
       ))}

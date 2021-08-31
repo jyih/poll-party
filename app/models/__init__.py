@@ -1,5 +1,5 @@
 from .db import db
 from .user import User
 from .poll import Poll
-from .answer import Answer
+from .option import Option
 from .vote import Vote

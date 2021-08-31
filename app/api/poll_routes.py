@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Poll, Answer
+from app.models import db, Poll, Option
 from app.forms import PollForm
 
 poll_routes = Blueprint('polls', __name__)
@@ -19,7 +19,7 @@ def poll(id):
 @login_required
 def poll_create():
   data = request.json
-  answers = data['answers']
+  options = data['options']
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -30,13 +30,13 @@ def poll_create():
     db.session.add(poll)
     db.session.commit()
 
-    for option in answers:
+    for option in options:
       if option:
-        answer = Answer(
-          answer=option,
+        option = Option(
+          option=option,
           poll_id=poll.id
         )
-        db.session.add(answer)
+        db.session.add(option)
 
     db.session.commit()
     return poll.to_dict()
@@ -49,7 +49,7 @@ def poll_edit(id):
   # print('''
   # backend data:''', data,'''
   # ''')
-  answers = data['answers']
+  options = data['options']
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -59,34 +59,34 @@ def poll_edit(id):
     db.session.commit()
 
     print(f'''******************************
-        enumerate${enumerate(answers)}
+        enumerate${enumerate(options)}
         ******************************''')
-    for (idx, option) in enumerate(answers):
-    # for (idx, option) in answers:
+    for (idx, option) in enumerate(options):
+    # for (idx, option) in options:
       print(f'''******************************
         idx, option: {idx, option}
         ******************************''')
       if option:
-        if idx < len(poll.answers):
+        if idx < len(poll.options):
           print(f'''******************************
-            JUST Option {option['answer']}
+            JUST Option {option['option']}
             ******************************''')
-          answer = poll.answers[idx]
-          answer.answer = option['answer']
+          option = poll.options[idx]
+          option.answer = option['option']
           print(f'''******************************
-            entered IF of {answer.answer}
+            entered IF of {option.answer}
             ******************************''')
-          db.session.add(answer)
+          db.session.add(option)
           db.session.commit()
 
         else:
-          answer = Answer(
-            answer=option,
+          option = Option(
+            option=option,
             poll_id=poll.id
           )
-          db.session.add(answer)
+          db.session.add(option)
           print(f'''******************************
-            entered ELSE of ${answer}
+            entered ELSE of ${option}
             ******************************''')
 
     print('''******************************

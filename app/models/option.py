@@ -1,8 +1,8 @@
 from .db import db
 
 
-class Answer(db.Model):
-    __tablename__ = 'answers'
+class Option(db.Model):
+    __tablename__ = 'options'
 
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(db.String(255), nullable=False)

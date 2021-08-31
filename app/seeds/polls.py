@@ -15,7 +15,7 @@ def seed_polls():
   poll_seeds.append(Poll(user_id=1, question='''Do you sleep with a blanket, even if it's hot?'''))
   poll_seeds.append(Poll(user_id=2, question='''Have you ever accidentally bit your dentist's finger?'''))
   poll_seeds.append(Poll(user_id=3, question='''What do you think about spoilers (for books, tv shows, movies, etc)?'''))
-  poll_seeds.append(Poll(user_id=5, question='''Have you ever clicked the wrong answer on a poll?'''))
+  poll_seeds.append(Poll(user_id=5, question='''Have you ever clicked the wrong option on a poll?'''))
   poll_seeds.append(Poll(user_id=8, question='''Favorite Beyonce album?'''))
   poll_seeds.append(Poll(user_id=13, question='''Would you rather...'''))
   poll_seeds.append(Poll(user_id=1, question='''Who is your favorite character from The Office?'''))

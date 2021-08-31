@@ -1,0 +1,68 @@
+from app.models import db, Option
+
+def seed_options():
+  option_seeds = []
+
+  option_seeds.append(Option(poll_id=1, answer='''Right Handed'''))
+  option_seeds.append(Option(poll_id=1, answer='''Left Handed'''))
+  option_seeds.append(Option(poll_id=1, answer='''Ambidextrous'''))
+  option_seeds.append(Option(poll_id=2, answer='''$1,000,000'''))
+  option_seeds.append(Option(poll_id=2, answer='''$10,000'''))
+  option_seeds.append(Option(poll_id=3, answer='''It ain't much, but it's honest work'''))
+  option_seeds.append(Option(poll_id=3, answer='''It ain't honest work, but it's much'''))
+  option_seeds.append(Option(poll_id=4, answer='''Hulu'''))
+  option_seeds.append(Option(poll_id=4, answer='''Netflix'''))
+  option_seeds.append(Option(poll_id=4, answer='''Amazon Prime'''))
+  option_seeds.append(Option(poll_id=4, answer='''Youtube TV'''))
+  option_seeds.append(Option(poll_id=5, answer='''I hate it'''))
+  option_seeds.append(Option(poll_id=5, answer='''I have no opinion'''))
+  option_seeds.append(Option(poll_id=5, answer='''I love it'''))
+  option_seeds.append(Option(poll_id=6, answer='''Football'''))
+  option_seeds.append(Option(poll_id=6, answer='''Hockey'''))
+  option_seeds.append(Option(poll_id=6, answer='''Baseball'''))
+  option_seeds.append(Option(poll_id=6, answer='''Basketball'''))
+  option_seeds.append(Option(poll_id=7, answer='''Smile with teeth'''))
+  option_seeds.append(Option(poll_id=7, answer='''Smile without teeth'''))
+  option_seeds.append(Option(poll_id=7, answer='''Serious'''))
+  option_seeds.append(Option(poll_id=7, answer='''Silly/Other'''))
+  option_seeds.append(Option(poll_id=8, answer='''Who hasn't?'''))
+  option_seeds.append(Option(poll_id=8, answer='''I think so'''))
+  option_seeds.append(Option(poll_id=8, answer='''I'm not sure'''))
+  option_seeds.append(Option(poll_id=8, answer='''No way!'''))
+  option_seeds.append(Option(poll_id=9, answer='''Yes'''))
+  option_seeds.append(Option(poll_id=9, answer='''No, too hot'''))
+  option_seeds.append(Option(poll_id=9, answer='''Yes, because ghosts'''))
+  option_seeds.append(Option(poll_id=9, answer='''Sometimes'''))
+  option_seeds.append(Option(poll_id=10, answer='''Nope'''))
+  option_seeds.append(Option(poll_id=10, answer='''Yep and it got awkward'''))
+  option_seeds.append(Option(poll_id=11, answer='''I don't care, I read them'''))
+  option_seeds.append(Option(poll_id=11, answer='''I don't like them'''))
+  option_seeds.append(Option(poll_id=11, answer='''I avoid them at all costs'''))
+  option_seeds.append(Option(poll_id=11, answer='''I don't know'''))
+  option_seeds.append(Option(poll_id=12, answer='''Yes'''))
+  option_seeds.append(Option(poll_id=12, answer='''No'''))
+  option_seeds.append(Option(poll_id=13, answer='''Dangerously In Love'''))
+  option_seeds.append(Option(poll_id=13, answer='''B'Day'''))
+  option_seeds.append(Option(poll_id=13, answer='''I am Sasha Fierce'''))
+  option_seeds.append(Option(poll_id=13, answer='''Other'''))
+  option_seeds.append(Option(poll_id=14, answer='''have 10 dogs'''))
+  option_seeds.append(Option(poll_id=14, answer='''have 0 dogs'''))
+  option_seeds.append(Option(poll_id=15, answer='''Michael'''))
+  option_seeds.append(Option(poll_id=15, answer='''Jim'''))
+  option_seeds.append(Option(poll_id=15, answer='''Dwight'''))
+  option_seeds.append(Option(poll_id=15, answer='''Creed'''))
+  option_seeds.append(Option(poll_id=15, answer='''Pam'''))
+  option_seeds.append(Option(poll_id=15, answer='''Angela'''))
+  option_seeds.append(Option(poll_id=15, answer='''Stanley'''))
+  option_seeds.append(Option(poll_id=15, answer='''Other'''))
+
+
+  for option in option_seeds:
+    db.session.add(option)
+
+  db.session.commit()
+
+
+def undo_options():
+  db.session.execute('TRUNCATE options RESTART IDENTITY CASCADE;')
+  db.session.commit()
