@@ -19,7 +19,7 @@ export const getPoll = (id) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    // data.answers = data.answers.map(answer => answer.answer)
+    // data.options = data.options.map(option => option.answer)
     dispatch(set(data));
     return data;
   }
@@ -36,7 +36,7 @@ export const createPoll = (payload) => async (dispatch) => {
     body: JSON.stringify({
       "question": payload.question,
       "user_id": payload.user_id,
-      "answers": payload.answers
+      "options": payload.options
     })
   })
   if (res.ok) {
@@ -52,14 +52,14 @@ export const createPoll = (payload) => async (dispatch) => {
 }
 
 export const editPoll = (payload, id) => async (dispatch) => {
-  console.log('payload at input:', payload.answers)
+  console.log('payload at input:', payload.options)
   const res = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       "question": payload.question,
       "user_id": payload.user_id,
-      "answers": payload.answers
+      "options": payload.options
     })
   })
   if (res.ok) {
@@ -82,7 +82,7 @@ export const votePoll = (payload) => async (dispatch) => {
     body: JSON.stringify({
       "poll_id": payload.poll_id,
       "user_id": payload.user_id,
-      "answer_id": payload.answer_id
+      "option_id": payload.option_id
     })
   })
   if (res.ok) {
@@ -112,7 +112,7 @@ export const deletePoll = (id) => async (dispatch) => {
   }
 }
 
-const initialState = { question: '', answers: ['', '', ''] }
+const initialState = { question: '', options: ['', '', ''] }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

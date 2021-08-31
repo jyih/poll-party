@@ -9,14 +9,14 @@ const PollCreate = () => {
   const user = useSelector(state => state.session.user)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', '']);
+  const [options, setOptions] = useState(['', '', '']);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       'user_id': user.id,
       'question': question,
-      'answers': answers,
+      'options': options,
     }
     const data = await dispatch(pollActions.createPoll(payload))
 
@@ -27,33 +27,34 @@ const PollCreate = () => {
     }
   }
 
-  const updateAnswers = (e, index) => {
-    let answer = e.target.value;
-    let newAnswers = [...answers];
-    newAnswers[index] = answer;
-    return setAnswers(newAnswers);
+  const updateOptions = (e, index) => {
+    let option = e.target.value;
+    let newOptions = [...options];
+    newOptions[index] = option;
+    return setOptions(newOptions);
   }
 
-  const addAnswer = (e, index) => {
+  const addOption = (e, index) => {
     e.preventDefault()
-    if (index === answers.length - 1) {
-      let newAnswers = [...answers, '']
-      return setAnswers(newAnswers);
+    if (index === options.length - 1) {
+      let newOptions = [...options, '']
+      return setOptions(newOptions);
     }
   }
 
-  const answerOptions = answers.map((answer, i) => {
+  const answerOptions = options.map((option, i) => {
     return (
       <div key={i}>
         <input
-          name={`answer ${i}`}
-          value={answer}
+          name={`option ${i}`}
+          value={option}
           required={i < 2}
           maxLength='255'
           placeholder='Type an answer option...'
-          onChange={(e) => updateAnswers(e, i)}
-          onClick={(e) => addAnswer(e, i)}
+          onChange={(e) => updateOptions(e, i)}
+          onClick={(e) => addOption(e, i)}
         />
+        {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`}
       </div>
     )
   })

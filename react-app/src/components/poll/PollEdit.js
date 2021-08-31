@@ -11,7 +11,7 @@ const PollEdit = ({ handleCancel }) => {
   const poll = useSelector(state => state.poll)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState(poll.question);
-  const [answers, setAnswers] = useState(poll.answers);
+  const [options, setOptions] = useState(poll.options);
 
   useEffect(() => {
     (async () => {
@@ -24,17 +24,17 @@ const PollEdit = ({ handleCancel }) => {
     const payload = {
       'user_id': user.id,
       'question': question,
-      'answers': answers,
+      'options': options,
     }
     const data = await dispatch(pollActions.editPoll(payload, params.pollId));
 
     if (data?.errors) {
       setErrors(data.errors);
     }
-    // else if (data?.id) {
-    //   history.push(`/polls/${data?.id}`)
-    // }
-    handleCancel(e)
+    else {
+      history.push(`/polls/${data?.id}`)
+      handleCancel(e)
+    }
   }
 
   const handleDelete = async (e) => {
@@ -43,33 +43,33 @@ const PollEdit = ({ handleCancel }) => {
     history.push(`/`)
   }
 
-  const updateAnswers = (e, index) => {
-    let answer = e.target.value;
-    let newAnswers = [...answers];
-    newAnswers[index].answer = answer;
-    return setAnswers(newAnswers);
+  const updateOptions = (e, index) => {
+    let option = e.target.value;
+    let newOptions = options.map(option => option.answer ? option.answer : option);
+    newOptions[index] = option;
+    return setOptions(newOptions);
   }
 
-  const addAnswer = (e, index) => {
+  const addOption = (e, index) => {
     e.preventDefault()
-    if (index === answers.length - 1) {
-      let newAnswers = [...answers, '']
-      return setAnswers(newAnswers);
+    if (index >= options.length - 1) {
+      let newOptions = [...options, '']
+      return setOptions(newOptions);
     }
   }
 
-  const answerOptions = answers.map((answer, i) => {
+  const answerOptions = options.map((option, i) => {
     return (
       <div key={i}>
         <input
-          name={`answer ${i}`}
-          value={answer.answer}
+          name={`option ${i}`}
+          value={option.answer}
           required={i < 2}
           maxLength='255'
           placeholder='Type an answer option...'
-          onChange={(e) => updateAnswers(e, i)}
+          onChange={(e) => updateOptions(e, i)}
         />
-        {`Chars. remaining: ${255 - answer.answer.length}`}
+        {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`}
       </div>
     )
   })
@@ -93,7 +93,7 @@ const PollEdit = ({ handleCancel }) => {
           <label>Answer Options</label>
           {answerOptions}
         </div>
-        <button onClick={e => addAnswer(e, answers.length - 1)}>Add Option</button>
+        <button onClick={e => addOption(e, options.length)}>Add Option</button>
         <div>
           <button onClick={e => handleSubmit(e)}>Save Changes</button>
           <button type='button' onClick={e => handleDelete(e)}>Delete Post</button>

@@ -10,8 +10,8 @@ const VoteForm = () => {
   const params = useParams();
   const user = useSelector(state => state.session.user)
   const [poll, setPoll] = useState({});
-  const [selectedAnswer, setSelectedAnswer] = useState(0)
-  // const [previousAnswer, setPreviousAnswer] = useState(0)
+  const [selectedOption, setSelectedOption] = useState(0)
+  // const [previousOption, setPreviousOption] = useState(0)
   // const [refresh, setRefresh] = useState(true)
 
 
@@ -27,7 +27,7 @@ const VoteForm = () => {
     const data = await dispatch(pollActions.votePoll({
       'user_id': user.id,
       'poll_id': params.pollId,
-      'answer_id': selectedAnswer,
+      'option_id': selectedOption,
     }));
     console.log(data)
     handleResults(e);
@@ -52,20 +52,20 @@ const VoteForm = () => {
   return (
     <div>
       <div>{poll?.question}</div>
-      <div>Choose one answer:</div>
+      <div>Choose one option:</div>
       <form onSubmit={handleVote}>
-        {poll?.answers?.map(answer => (
-          <div key={answer.id} >
+        {poll?.options?.map(option => (
+          <div key={option.id} >
             <input
               type="radio"
-              name='poll-answer'
-              id={`answer${answer.id}`}
-              value={answer.id}
+              name='poll-option'
+              id={`option${option.id}`}
+              value={option.id}
               required
-              // checked={selectedAnswer === answer.id}
-              onChange={e => setSelectedAnswer(e.target.value)}
+              // checked={selectedOption === option.id}
+              onChange={e => setSelectedOption(e.target.value)}
             />
-            {answer.answer}
+            {option.answer}
           </div>
         ))}
         {user

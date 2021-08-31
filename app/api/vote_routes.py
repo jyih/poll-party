@@ -23,17 +23,17 @@ def vote_cast():
   print('data:', data)
   user_id = data['user_id']
   poll_id = data['poll_id']
-  answer_id = data['answer_id']
+  option_id = data['option_id']
 
   vote = Vote.get_by_user_poll(user_id, poll_id)
   if vote:
-    vote.answer_id = answer_id
+    vote.option_id = option_id
   else:
     poll = Poll.query.get(poll_id)
     if poll:
       vote = Vote(
         user_id=user_id,
-        answer_id=answer_id,
+        option_id=option_id,
         poll_id=poll_id
       )
       db.session.add(vote)
