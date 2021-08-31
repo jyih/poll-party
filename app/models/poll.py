@@ -15,5 +15,12 @@ class Poll(db.Model):
             'id': self.id,
             'question': self.question,
             'user_id': self.user_id,
-            'options': self.options,
+        }
+
+    def get_options(self):
+        return {
+            'id': self.id,
+            'question': self.question,
+            'user_id': self.user_id,
+            'options': [option.get_votes() for option in self.options],
         }

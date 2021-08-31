@@ -33,3 +33,9 @@ class User(db.Model, UserMixin):
             'polls': [poll.to_dict() for poll in self.polls],
             'votes': [vote.to_dict() for vote in self.votes],
         }
+
+    def get_polls(self):
+        return [poll.to_dict() for poll in self.polls]
+
+    def get_votes(self):
+        return [vote.to_dict() for vote in self.votes]

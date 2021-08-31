@@ -15,5 +15,12 @@ class Option(db.Model):
             'id': self.id,
             'answer': self.answer,
             'poll_id': self.poll_id,
+        }
+
+    def get_votes(self):
+        return {
+            'id': self.id,
+            'answer': self.answer,
+            'poll_id': self.poll_id,
             'votes': [vote.to_dict() for vote in self.votes],
         }
