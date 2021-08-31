@@ -19,7 +19,6 @@ export const getPoll = (id) => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    // data.options = data.options.map(option => option.answer)
     dispatch(set(data));
     return data;
   }
@@ -52,7 +51,9 @@ export const createPoll = (payload) => async (dispatch) => {
 }
 
 export const editPoll = (payload, id) => async (dispatch) => {
-  console.log('payload at input:', payload.options)
+  console.log('------------------------------------');
+  console.log('payload at input:', payload.options);
+  console.log('------------------------------------');
   const res = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -64,7 +65,9 @@ export const editPoll = (payload, id) => async (dispatch) => {
   })
   if (res.ok) {
     const data = await res.json();
-    console.log('res.json:', data)
+    console.log('------------------------------------');
+    console.log('res.json:', data);
+    console.log('------------------------------------');
     dispatch(set(data));
     if (data.errors) {
       return data.errors;
@@ -117,7 +120,7 @@ const initialState = { question: '', options: ['', '', ''] }
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_POLL:
-      return { ...action.payload }
+      return action.payload
     case UNSET_POLL:
       return initialState
     default:

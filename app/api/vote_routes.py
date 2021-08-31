@@ -19,8 +19,6 @@ def vote(id):
 @login_required
 def vote_cast():
   data = request.json
-  print('request:', request)
-  print('data:', data)
   user_id = data['user_id']
   poll_id = data['poll_id']
   option_id = data['option_id']

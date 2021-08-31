@@ -8,14 +8,19 @@ class Poll(db.Model):
     question = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    options = db.relationship('Option', cascade="all, delete, delete-orphan")
+    options = db.relationship('Option', cascade="all, delete, delete-orphan", order_by='Option.id')
 
     def to_dict(self):
-        options_list = [option.to_dict() for option in self.options]
-        options_list.sort(key=lambda option: option['id'])
         return {
             'id': self.id,
             'question': self.question,
             'user_id': self.user_id,
-            'options': options_list,
+        }
+
+    def get_options(self):
+        return {
+            'id': self.id,
+            'question': self.question,
+            'user_id': self.user_id,
+            'options': [option.get_votes() for option in self.options],
         }

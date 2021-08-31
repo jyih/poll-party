@@ -11,7 +11,8 @@ const PollEdit = ({ handleCancel }) => {
   const poll = useSelector(state => state.poll)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState(poll.question);
-  const [options, setOptions] = useState(poll.options);
+  // const [options, setOptions] = useState([...poll.options]);
+  const [options, setOptions] = useState([...poll.options.map(option => option.answer)]);
 
   useEffect(() => {
     (async () => {
@@ -32,8 +33,9 @@ const PollEdit = ({ handleCancel }) => {
       setErrors(data.errors);
     }
     else {
-      history.push(`/polls/${data?.id}`)
+      // history.push(`/polls/${data?.id}`)
       handleCancel(e)
+      // setRefresh()
     }
   }
 
@@ -45,7 +47,8 @@ const PollEdit = ({ handleCancel }) => {
 
   const updateOptions = (e, index) => {
     let option = e.target.value;
-    let newOptions = options.map(option => option.answer ? option.answer : option);
+    // let newOptions = options.map(option => option.answer ? option.answer : option);
+    let newOptions = options.slice();
     newOptions[index] = option;
     return setOptions(newOptions);
   }
@@ -58,18 +61,19 @@ const PollEdit = ({ handleCancel }) => {
     }
   }
 
-  const answerOptions = options.map((option, i) => {
+  const answerOptions = options.map((answer, i) => {
     return (
       <div key={i}>
         <input
           name={`option ${i}`}
-          value={option.answer}
+          value={answer}
           required={i < 2}
           maxLength='255'
           placeholder='Type an answer option...'
           onChange={(e) => updateOptions(e, i)}
         />
-        {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`}
+        {/* {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`} */}
+        {` Chars. remaining: ${255 - answer.length}`}
       </div>
     )
   })
