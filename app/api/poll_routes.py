@@ -33,7 +33,7 @@ def poll_create():
     for option in options:
       if option:
         option = Option(
-          option=option,
+          answer=option,
           poll_id=poll.id
         )
         db.session.add(option)
@@ -59,34 +59,31 @@ def poll_edit(id):
     db.session.commit()
 
     print(f'''******************************
-        enumerate${enumerate(options)}
+        options: {options}
         ******************************''')
-    for (idx, option) in enumerate(options):
+    for (idx, answer) in enumerate(options):
     # for (idx, option) in options:
       print(f'''******************************
-        idx, option: {idx, option}
+        idx, answer: {idx, answer}
         ******************************''')
-      if option:
+      if answer:
         if idx < len(poll.options):
           print(f'''******************************
-            JUST Option {option['option']}
+            JUST answer {answer}
             ******************************''')
           option = poll.options[idx]
-          option.answer = option['option']
-          print(f'''******************************
-            entered IF of {option.answer}
-            ******************************''')
-          db.session.add(option)
+          option.answer = answer
+          # db.session.add(option)
           db.session.commit()
 
         else:
-          option = Option(
-            option=option,
+          answer = Option(
+            answer=answer,
             poll_id=poll.id
           )
-          db.session.add(option)
+          db.session.add(answer)
           print(f'''******************************
-            entered ELSE of ${option}
+            entered ELSE of ${answer}
             ******************************''')
 
     print('''******************************

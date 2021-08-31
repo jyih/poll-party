@@ -42,7 +42,7 @@ const PollCreate = () => {
     }
   }
 
-  const optionOptions = options.map((option, i) => {
+  const answerOptions = options.map((option, i) => {
     return (
       <div key={i}>
         <input
@@ -50,10 +50,11 @@ const PollCreate = () => {
           value={option}
           required={i < 2}
           maxLength='255'
-          placeholder='Type an option option...'
+          placeholder='Type an answer option...'
           onChange={(e) => updateOptions(e, i)}
           onClick={(e) => addOption(e, i)}
         />
+        {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`}
       </div>
     )
   })
@@ -74,8 +75,8 @@ const PollCreate = () => {
           />
         </div>
         <div>
-          <label>Option Options</label>
-          {optionOptions}
+          <label>Answer Options</label>
+          {answerOptions}
         </div>
         <button>Create Poll</button>
       </form>

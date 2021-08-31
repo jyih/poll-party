@@ -31,10 +31,10 @@ const PollEdit = ({ handleCancel }) => {
     if (data?.errors) {
       setErrors(data.errors);
     }
-    // else if (data?.id) {
-    //   history.push(`/polls/${data?.id}`)
-    // }
-    handleCancel(e)
+    else {
+      history.push(`/polls/${data?.id}`)
+      handleCancel(e)
+    }
   }
 
   const handleDelete = async (e) => {
@@ -45,20 +45,20 @@ const PollEdit = ({ handleCancel }) => {
 
   const updateOptions = (e, index) => {
     let option = e.target.value;
-    let newOptions = [...options];
-    newOptions[index].option = option;
+    let newOptions = options.map(option => option.answer ? option.answer : option);
+    newOptions[index] = option;
     return setOptions(newOptions);
   }
 
   const addOption = (e, index) => {
     e.preventDefault()
-    if (index === options.length - 1) {
+    if (index >= options.length - 1) {
       let newOptions = [...options, '']
       return setOptions(newOptions);
     }
   }
 
-  const optionOptions = options.map((option, i) => {
+  const answerOptions = options.map((option, i) => {
     return (
       <div key={i}>
         <input
@@ -66,10 +66,10 @@ const PollEdit = ({ handleCancel }) => {
           value={option.answer}
           required={i < 2}
           maxLength='255'
-          placeholder='Type an option option...'
+          placeholder='Type an answer option...'
           onChange={(e) => updateOptions(e, i)}
         />
-        {`Chars. remaining: ${255 - option.answer.length}`}
+        {` Chars. remaining: ${255 - (option.answer ? option.answer.length : option.length)}`}
       </div>
     )
   })
@@ -90,10 +90,10 @@ const PollEdit = ({ handleCancel }) => {
           />
         </div>
         <div>
-          <label>Option Options</label>
-          {optionOptions}
+          <label>Answer Options</label>
+          {answerOptions}
         </div>
-        <button onClick={e => addOption(e, options.length - 1)}>Add Option</button>
+        <button onClick={e => addOption(e, options.length)}>Add Option</button>
         <div>
           <button onClick={e => handleSubmit(e)}>Save Changes</button>
           <button type='button' onClick={e => handleDelete(e)}>Delete Post</button>
