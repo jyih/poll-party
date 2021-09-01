@@ -11,7 +11,7 @@ const VoteForm = () => {
   const user = useSelector(state => state.session.user)
   const poll = useSelector(state => state.poll)
   const [selectedOption, setSelectedOption] = useState(0)
-  const [refresh, setRefresh] = useState(true)
+  // const [refresh, setRefresh] = useState(true)
 
 
   useEffect(() => {

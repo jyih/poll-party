@@ -11,15 +11,15 @@ const PollEdit = ({ handleCancel }) => {
   const poll = useSelector(state => state.poll)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState(poll?.question);
-  const [options, setOptions] = useState(['', '', '']);
-  // const [options, setOptions] = useState([...poll?.options?.map(option => option.answer)]);
+  // const [options, setOptions] = useState(['', '', '']);
+  // const mappedOptions = [...poll?.options?.map(option => option.answer)]
+  const [options, setOptions] = useState([...poll?.options?.map(option => option.answer)]);
 
   useEffect(() => {
     (async () => {
       await dispatch(pollActions.getPoll(params.pollId))
     })()
-    setOptions([...poll?.options?.map(option => option.answer)]);
-  }, [dispatch, params])
+  }, [dispatch, params, poll])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

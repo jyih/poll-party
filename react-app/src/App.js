@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -11,7 +11,7 @@ import * as sessionActions from './store/session';
 import VoteForm from './components/poll/VoteForm';
 import PollResults from './components/poll/PollResults';
 import PollCreate from './components/poll/PollCreate';
-import LandingPage from './components/LandingPage';
+import Splash from './components/Splash';
 // import PollEdit from './components/poll/PollEdit';
 
 function App() {
@@ -35,22 +35,22 @@ function App() {
       <div className='content-container'>
 
         <Switch>
+          <ProtectedRoute path='/' exact={true} >
+            <h1>My Home Page</h1>
+          </ProtectedRoute>
+
           <Route path='/login' exact={true}>
             <LoginForm />
           </Route>
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
           </Route>
+
           <ProtectedRoute path='/users' exact={true} >
             <UsersList />
           </ProtectedRoute>
           <ProtectedRoute path='/users/:userId' exact={true} >
             <User />
-          </ProtectedRoute>
-
-          <ProtectedRoute path='/' exact={true} >
-            <h1>My Home Page</h1>
-            <LandingPage />
           </ProtectedRoute>
 
           <Route path='/create' exact={true}>
@@ -63,9 +63,8 @@ function App() {
             <PollResults />
           </Route>
           {/* <Route path='/polls/:pollId/edit' exact={true}>
-          <PollEdit handleCancel={(e) => <Redirect to='/polls/:pollId' />}
-          />
-        </Route> */}
+            <PollEdit handleCancel={(e) => <Redirect to='/polls/:pollId' />} />
+          </Route> */}
         </Switch>
       </div>
     </BrowserRouter>
