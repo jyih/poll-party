@@ -7,7 +7,7 @@ function PollEditModal({ setRefresh }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button className='form-button' onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PollEdit

@@ -68,12 +68,14 @@ const VoteForm = () => {
             </label>
           </div>
         ))}
-        {user
-          ? <button type='submit'>Vote</button>
-          : <button onClick={e => handleToLogin(e)}>Log In to Vote</button>
-        }
+        <div className='form-button-container'>
+          {user
+            ? <button className='form-button form-submit' type='submit'>Vote</button>
+            : <button className='form-button form-submit' onClick={e => handleToLogin(e)}>Log In to Vote</button>
+          }
+        </div>
       </form>
-      <button onClick={e => handleResults(e)}>Results</button>
+      <button className='form-button' onClick={e => handleResults(e)}>Results</button>
       <PollEditModal />
       {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
     </div >

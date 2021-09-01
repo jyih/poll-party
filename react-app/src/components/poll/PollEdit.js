@@ -19,7 +19,7 @@ const PollEdit = ({ handleCancel }) => {
     (async () => {
       await dispatch(pollActions.getPoll(params.pollId))
     })()
-  }, [dispatch, params, poll])
+  }, [dispatch, params])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +48,6 @@ const PollEdit = ({ handleCancel }) => {
 
   const updateOptions = (e, index) => {
     let option = e.target.value;
-    // let newOptions = options.map(option => option.answer ? option.answer : option);
     let newOptions = options.slice();
     newOptions[index] = option;
     return setOptions(newOptions);
