@@ -12,6 +12,7 @@ import VoteForm from './components/poll/VoteForm';
 import PollResults from './components/poll/PollResults';
 import PollCreate from './components/poll/PollCreate';
 import Splash from './components/Splash';
+import Footer from './components/footer/Footer';
 // import PollEdit from './components/poll/PollEdit';
 
 function App() {
@@ -32,8 +33,8 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <div className='content-container'>
 
+      <div className='content-container'>
         <Switch>
           <ProtectedRoute path='/' exact={true} >
             <h1>My Home Page</h1>
@@ -71,6 +72,7 @@ function App() {
           </Route> */}
         </Switch>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
