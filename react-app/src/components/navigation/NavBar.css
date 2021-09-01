@@ -55,17 +55,6 @@
   max-width: 420px;
 }
 
-.nav-logo-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 69px;
-  /* min-width: 69px; */
-  min-height: 52px;
-  /* background: rgb(255,85,0);
-  background: linear-gradient(0deg, rgba(255,85,0,1) 15%, #ff8e56 100%); */
-}
-
 .navbar-left-container {
   display: flex;
   justify-content: space-between;
@@ -73,11 +62,25 @@
   min-width: 150px;
 }
 
+.nav-logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100px;
+  /* min-width: 69px; */
+  min-height: 52px;
+  max-height: 52px;
+  /* background: rgb(255,85,0);
+  background: linear-gradient(0deg, rgba(255,85,0,1) 15%, #ff8e56 100%); */
+}
+
 .nav-logo {
   width: 75%;
   height: 75%;
   min-height: 33px;
-  min-width: 50px;
+  min-width: 33px;
+  max-height: 52px;
+  max-width: 52px;
 }
 
 .profile-dropdown {

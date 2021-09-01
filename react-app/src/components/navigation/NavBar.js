@@ -44,13 +44,14 @@ const NavBar = () => {
     <nav className='navbar-container'>
       <div className='navbar-content-container'>
         <div className='navbar-left-container'>
-          <div className='nav-button-container'>
-            {/* <div className='nav-logo-container'>
-            <img className='nav-logo'
-              alt='Poll Party'
-              src=''
+          <div className='nav-button-container nav-home'>
+            <div className='nav-logo-container'>
+              <img
+                className='nav-logo'
+                alt='Poll Party'
+                src={process.env.PUBLIC_URL + 'beach-ball-icon.png'}
               />
-          </div> */}
+            </div>
             <NavLink className='nav-link nav-home nav-site-title' to='/' exact={true} activeClassName='active'>
               Poll Party
             </NavLink>
