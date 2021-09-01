@@ -44,13 +44,13 @@ const NavBar = () => {
     <nav className='navbar-container'>
       <div className='navbar-content-container'>
         <div className='navbar-left-container'>
-          <div className='nav-logo-container'>
-            <img className='nav-logo'
-              alt='Nimbus Sounds'
-              src='https://raw.githubusercontent.com/poll-party/react-app/public/beach-ball-icon.jpg'
-            />
-          </div>
           <div className='nav-button-container'>
+            {/* <div className='nav-logo-container'>
+            <img className='nav-logo'
+              alt='Poll Party'
+              src=''
+              />
+          </div> */}
             <NavLink className='nav-link nav-home nav-site-title' to='/' exact={true} activeClassName='active'>
               Poll Party
             </NavLink>

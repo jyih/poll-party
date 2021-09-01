@@ -60,10 +60,10 @@ color: #FEFEFE;
   justify-content: center;
   align-items: center;
   max-width: 69px;
-  min-width: 69px;
+  /* min-width: 69px; */
   min-height: 52px;
-  background: rgb(255,85,0);
-  background: linear-gradient(0deg, rgba(255,85,0,1) 15%, #ff8e56 100%);
+  /* background: rgb(255,85,0);
+  background: linear-gradient(0deg, rgba(255,85,0,1) 15%, #ff8e56 100%); */
 }
 
 .navbar-left-container {
