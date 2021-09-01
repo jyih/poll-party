@@ -10,16 +10,13 @@ const VoteForm = () => {
   const params = useParams();
   const user = useSelector(state => state.session.user)
   const poll = useSelector(state => state.poll)
-  // const [poll, setPoll] = useState({});
   const [selectedOption, setSelectedOption] = useState(0)
-  // const [previousOption, setPreviousOption] = useState(0)
   const [refresh, setRefresh] = useState(true)
 
 
   useEffect(() => {
     (async () => {
       await dispatch(pollActions.getPoll(params.pollId))
-      // setPoll(data)
     })()
   }, [dispatch, params])
 
@@ -51,22 +48,24 @@ const VoteForm = () => {
   }
 
   return (
-    <div>
+    <div className='form-container'>
+      <div className='form-title'>Vote!</div>
       <div>{poll?.question}</div>
       <div>Choose one option:</div>
       <form onSubmit={handleVote}>
-        {poll?.options?.map(option => (
-          <div key={option.id} >
-            <input
-              type="radio"
-              name='poll-option'
-              id={`option${option.id}`}
-              value={option.id}
-              required
-              // checked={selectedOption === option.id}
-              onChange={e => setSelectedOption(e.target.value)}
-            />
-            {option.answer}
+        {poll?.options?.map((option, idx) => (
+          <div key={idx} >
+            <label htmlFor={`option${option.id}`}>
+              <input
+                type="radio"
+                name='poll-option'
+                id={`option${option.id}`}
+                value={option.id}
+                required
+                onChange={e => setSelectedOption(e.target.value)}
+              />
+              {option.answer}
+            </label>
           </div>
         ))}
         {user
@@ -75,8 +74,8 @@ const VoteForm = () => {
         }
       </form>
       <button onClick={e => handleResults(e)}>Results</button>
-      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
       <PollEditModal />
+      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
     </div >
   );
 }
