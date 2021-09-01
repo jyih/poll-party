@@ -29,45 +29,47 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return poll
+    return poll.id
       ? <Redirect to={`/polls/${poll?.id}`} />
       : <Redirect to='/' />;
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
+    <div className='form-container'>
+      <form onSubmit={onLogin}>
         <div>
-          <button type='submit'>Login</button>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
         </div>
         <div>
-          <button onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
+          <label htmlFor='email'>Email</label>
+          <input
+            name='email'
+            type='text'
+            placeholder='example@site.com'
+            value={email}
+            onChange={updateEmail}
+          />
         </div>
-      </div>
-    </form>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            name='password'
+            type='password'
+            placeholder='••••••'
+            value={password}
+            onChange={updatePassword}
+          />
+          <div className='form-button-container'>
+            <button className='form-button' type='submit'>Login</button>
+          </div>
+          <div className='form-button-container'>
+            <button className='form-button' onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

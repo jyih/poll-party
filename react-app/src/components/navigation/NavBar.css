@@ -1,0 +1,142 @@
+/* @media screen and (min-width: 600px) { */
+.nav-site-title {
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    /* margin-top: 12px; */
+    font-size: 14pt;
+    color: #eee;
+    white-space: nowrap;
+  }
+/* } */
+
+/* @media screen and (max-width: 599px) {
+  .nav-site-title{
+    visibility: hidden;
+  }
+} */
+
+.navbar-container {
+  position: fixed;
+  /* display: flex;
+  justify-content: space-between; */
+  top: 0px;
+  width: 100%;
+  height: 52px;
+  /* color: #cccccc; */
+  background-color: #37393f;
+  text-align: center;
+}
+
+.navbar-content-container {
+  max-width: 1240px;
+  display: flex;
+  justify-content: space-between;
+  top: 0px;
+  width: 90%;
+  height: 52px;
+  margin: 0 auto 0 auto;
+}
+
+.nav-link, .nav-link a {
+  color: #b9bbbe;
+}
+
+.nav-home {
+  margin-right: 20%;
+color: #FEFEFE;
+}
+
+.nav-right-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-width: 200px;
+  max-width: 420px;
+}
+
+.nav-logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 69px;
+  min-width: 69px;
+  min-height: 52px;
+  background: rgb(255,85,0);
+  background: linear-gradient(0deg, rgba(255,85,0,1) 15%, #ff8e56 100%);
+}
+
+.navbar-left-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 150px;
+}
+
+.nav-logo {
+  width: 75%;
+  height: 75%;
+  min-height: 33px;
+  min-width: 50px;
+}
+
+.profile-dropdown {
+  height: 100px;
+  list-style-type: none;
+  background-color: red;
+}
+
+.nav-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-button {
+  /* display: flex;
+  align-items: center;
+
+  height: 26px;
+  margin: 0;
+  padding: 2px 11px 2px 10px; 
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap; */
+
+  background-color: #54545b;
+  border-color: transparent;
+  color: #fff;
+  border-width: 1px;
+  cursor: pointer;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  line-height: 1.5;
+
+  position: relative;
+  vertical-align: top;
+}
+
+/* .button-sign-in, .button-log-out {
+  background-color: #333;
+  color: #fff;
+} */
+
+.nav-button.button-sign-up, .nav-button.button-create {
+  background-color: #3EB991;
+  color: #fff;
+  border-style: none;
+}
