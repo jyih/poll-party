@@ -53,9 +53,9 @@ const VoteForm = () => {
       <div>{poll?.question}</div>
       <div>Choose one option:</div>
       <form onSubmit={handleVote}>
-        {poll?.options?.map(option => (
-          <div key={option.id} >
-            <label for={`option${option.id}`}>
+        {poll?.options?.map((option, idx) => (
+          <div key={idx} >
+            <label htmlFor={`option${option.id}`}>
               <input
                 type="radio"
                 name='poll-option'
@@ -74,8 +74,8 @@ const VoteForm = () => {
         }
       </form>
       <button onClick={e => handleResults(e)}>Results</button>
-      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
       <PollEditModal />
+      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
     </div >
   );
 }
