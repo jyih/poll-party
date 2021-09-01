@@ -39,6 +39,10 @@ function App() {
             <h1>My Home Page</h1>
           </ProtectedRoute>
 
+          <Route path='/splash' exact={true}>
+            <Splash />
+          </Route>
+
           <Route path='/login' exact={true}>
             <LoginForm />
           </Route>
