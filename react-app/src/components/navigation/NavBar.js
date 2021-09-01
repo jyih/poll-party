@@ -49,7 +49,7 @@ const NavBar = () => {
               <img
                 className='nav-logo'
                 alt='Poll Party'
-                src={process.env.PUBLIC_URL + 'beach-ball-icon.png'}
+                src='https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png'
               />
             </div>
             <NavLink className='nav-link nav-home nav-site-title' to='/' exact={true} activeClassName='active'>
