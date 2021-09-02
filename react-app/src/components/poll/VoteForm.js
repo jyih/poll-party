@@ -28,9 +28,6 @@ const VoteForm = () => {
 
   const handleVote = async (e) => {
     e.preventDefault()
-    console.log('------------------------------------');
-    console.log('selectedOption', selectedOption);
-    console.log('------------------------------------');
     const data = await dispatch(pollActions.votePoll({
       'user_id': user.id,
       'poll_id': params.pollId,
@@ -91,7 +88,9 @@ const VoteForm = () => {
           <div className='form-button-container'>
             <button className='form-button' type='button' onClick={e => handleResults(e)}>Results</button>
           </div>
-          <PollEditModal />
+          {user.id == poll.user_id &&
+            <PollEditModal />
+          }
         </div>
         {/* <button className='form-button' onClick={e => handleEdit(e)}>Edit</button> */}
       </div >
