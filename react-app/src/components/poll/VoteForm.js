@@ -28,9 +28,6 @@ const VoteForm = () => {
 
   const handleVote = async (e) => {
     e.preventDefault()
-    console.log('------------------------------------');
-    console.log('selectedOption', selectedOption);
-    console.log('------------------------------------');
     const data = await dispatch(pollActions.votePoll({
       'user_id': user.id,
       'poll_id': params.pollId,

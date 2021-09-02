@@ -29,17 +29,11 @@ const PollEdit = ({ handleCancel }) => {
       'options': options,
     }
     const data = await dispatch(pollActions.editPoll(payload, params.pollId));
-    console.log('------------------------------------');
-    console.log(data);
-    console.log('------------------------------------');
     if (data?.errors) {
       setErrors(data.errors);
       console.log(data.errors)
     }
     else {
-      console.log('------------------------------------');
-      console.log('else statement in handlesubmit');
-      console.log('------------------------------------');
       handleCancel(e)
     }
   }
