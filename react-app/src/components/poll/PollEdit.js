@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import * as pollActions from "../../store/polls"
+import * as pollActions from "../../store/poll"
 
 const PollEdit = ({ handleCancel }) => {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const PollEdit = ({ handleCancel }) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(pollActions.deletePoll)
+    await dispatch(pollActions.deletePoll(params.pollId))
     history.push(`/`)
   }
 

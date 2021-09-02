@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import * as pollActions from "../../store/polls"
+import * as pollActions from "../../store/poll"
 import PollEditModal from './PollEditModal';
 
 const VoteForm = () => {
@@ -10,14 +10,17 @@ const VoteForm = () => {
   const params = useParams();
   const user = useSelector(state => state.session.user);
   const poll = useSelector(state => state.poll);
-  const options = Object.values(poll.options);
+  // const options = Object.values(poll.options);
+  const options = poll.options ? Object.values(poll.options) : [];
+  // const options = poll.options;
+  // const [options, setOptions] = useState(Object.values(poll.options))
   const [selectedOption, setSelectedOption] = useState(0);
   // const [refresh, setRefresh] = useState(true);
 
 
   useEffect(() => {
     (async () => {
-      await dispatch(pollActions.getPoll(params.pollId))
+      await dispatch(pollActions.getPoll(params?.pollId))
     })()
   }, [dispatch, params])
 
@@ -38,10 +41,10 @@ const VoteForm = () => {
 
   }
 
-  const handleEdit = (e) => {
-    e.preventDefault()
-    history.push(`/polls/${params.pollId}/edit`)
-  }
+  // const handleEdit = (e) => {
+  //   e.preventDefault()
+  //   history.push(`/polls/${params.pollId}/edit`)
+  // }
 
   const handleToLogin = (e) => {
     e.preventDefault()

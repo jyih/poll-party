@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import * as pollActions from "../../store/polls"
+import * as pollActions from "../../store/poll"
 
 const PollCreate = () => {
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const PollCreate = () => {
             maxLength='255'
             placeholder='Type an answer option...'
             onChange={(e) => updateOptions(e, i)}
+            onClick={(e) => addOption(e, i)}
           />
           {` chars. ${255 - answer?.length}/255`}
         </label>
@@ -81,7 +82,7 @@ const PollCreate = () => {
           {answerOptions}
         </div>
         <div className='form-button-container'>
-          <button className='form-button button-primary'>Create Poll</button>
+          <button type='submit' className='form-button button-primary'>Create Poll</button>
         </div>
       </form>
     </div>
