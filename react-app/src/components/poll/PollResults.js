@@ -34,7 +34,7 @@ const PollResults = () => {
               {option?.answer}
             </div>
             <div>
-              {((option.count / poll.total_votes) * 100).toFixed(2)}% ({option?.count} votes)
+              {poll.total_votes ? ((option.count / poll.total_votes) * 100).toFixed(2) : 0}% ({option?.count} votes)
             </div>
             {/* <div>
               Insert Vote Bar
@@ -42,6 +42,9 @@ const PollResults = () => {
           </div>
         </div>
       ))}
+      <div>
+        Total Votes: {poll.total_votes}
+      </div>
       <div className='form-button-container'>
         <button className='form-button' onClick={e => handleOnClick(e)}>Back to Poll</button>
       </div>
