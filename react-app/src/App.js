@@ -58,12 +58,6 @@ function App() {
             <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute>
-            {/* <Route path='/users' exact={true} >
-              <UsersList />
-            </Route>
-            <Route path='/users/:userId' exact={true} >
-              <User />
-            </Route> */}
 
             <ProtectedRoute path='/create' exact={true}>
               <PollCreate />
@@ -71,15 +65,13 @@ function App() {
             <ProtectedRoute path='/polls/' exact={true}>
               <AllPolls />
             </ProtectedRoute>
-            <Route path='/polls/:pollId/' exact={true}>
+            <ProtectedRoute path='/polls/:pollId/' exact={true}>
               <VoteForm />
-            </Route>
-            <Route path='/polls/:pollId/results' exact={true}>
+            </ProtectedRoute>
+            <ProtectedRoute path='/polls/:pollId/results' exact={true}>
               <PollResults />
-            </Route>
-            {/* <Route path='/polls/:pollId/edit' exact={true}>
-              <PollEdit handleCancel={() => <Redirect to='/polls/:pollId' />} />
-            </Route> */}
+            </ProtectedRoute>
+
           </Switch>
         </div>
       </div>
