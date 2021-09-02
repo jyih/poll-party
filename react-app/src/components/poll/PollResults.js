@@ -42,6 +42,9 @@ const PollResults = () => {
           </div>
         </div>
       ))}
+      <div>
+        Total Votes: {poll.total_votes}
+      </div>
       <div className='form-button-container'>
         <button className='form-button' onClick={e => handleOnClick(e)}>Back to Poll</button>
       </div>
