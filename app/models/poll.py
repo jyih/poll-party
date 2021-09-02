@@ -22,5 +22,6 @@ class Poll(db.Model):
             'id': self.id,
             'question': self.question,
             'user_id': self.user_id,
-            'options': [option.get_votes() for option in self.options],
+            'options': {option.to_dict()['id']:option.get_votes() for option in self.options},
+            'total_votes': sum([option.get_votes()['count'] for option in self.options])
         }

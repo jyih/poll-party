@@ -12,7 +12,7 @@ const NavBar = () => {
       <div className='nav-right-container'>
         <div className='nav-button-container'>
           <NavLink className='nav-link' to='/create' exact={true} activeClassName='active'>
-            <button className='nav-button button-create' type='button'>
+            <button className='nav-button button-primary' type='button'>
               Create Poll
             </button>
           </NavLink>
@@ -32,7 +32,7 @@ const NavBar = () => {
         </div>
         <div>
           <NavLink className='nav-link' to='/sign-up' exact={true} activeClassName='active'>
-            <button className='nav-button button-sign-up' type='button'>
+            <button className='nav-button button-primary' type='button'>
               Sign Up
             </button>
           </NavLink>

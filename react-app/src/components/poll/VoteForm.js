@@ -8,10 +8,11 @@ const VoteForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const user = useSelector(state => state.session.user)
-  const poll = useSelector(state => state.poll)
-  const [selectedOption, setSelectedOption] = useState(0)
-  // const [refresh, setRefresh] = useState(true)
+  const user = useSelector(state => state.session.user);
+  const poll = useSelector(state => state.poll);
+  const options = Object.values(poll.options);
+  const [selectedOption, setSelectedOption] = useState(0);
+  // const [refresh, setRefresh] = useState(true);
 
 
   useEffect(() => {
@@ -37,10 +38,10 @@ const VoteForm = () => {
 
   }
 
-  // const handleEdit = (e) => {
-  //   e.preventDefault()
-  //   history.push(`/polls/${params.pollId}/edit`)
-  // }
+  const handleEdit = (e) => {
+    e.preventDefault()
+    history.push(`/polls/${params.pollId}/edit`)
+  }
 
   const handleToLogin = (e) => {
     e.preventDefault()
@@ -53,7 +54,7 @@ const VoteForm = () => {
       <div>{poll?.question}</div>
       <div>Choose one option:</div>
       <form onSubmit={handleVote}>
-        {poll?.options?.map((option, idx) => (
+        {options?.map((option, idx) => (
           <div key={idx} >
             <label htmlFor={`option${option.id}`}>
               <input
@@ -68,16 +69,20 @@ const VoteForm = () => {
             </label>
           </div>
         ))}
-        <div className='form-button-container'>
+      </form>
+      <div className='form-button-container row'>
+        <div className='form-button-container left'>
           {user
-            ? <button className='form-button form-submit' type='submit'>Vote</button>
-            : <button className='form-button form-submit' onClick={e => handleToLogin(e)}>Log In to Vote</button>
+            ? <button className='form-button button-primary' type='submit'>Vote</button>
+            : <button className='form-button button-primary' type='button' onClick={e => handleToLogin(e)}>Log In to Vote</button>
           }
         </div>
-      </form>
-      <button className='form-button' onClick={e => handleResults(e)}>Results</button>
-      <PollEditModal />
-      {/* <button onClick={e => handleEdit(e)}>Edit</button> */}
+        <div className='form-button-container right'>
+          <button className='form-button' onClick={e => handleResults(e)}>Results</button>
+          <PollEditModal />
+        </div>
+        {/* <button className='form-button' onClick={e => handleEdit(e)}>Edit</button> */}
+      </div >
     </div >
   );
 }
