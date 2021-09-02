@@ -58,16 +58,21 @@ const NavBar = () => {
             </strong>
           </NavLink>
         </div>
-        <div className='nav-button-container'>
-          <NavLink className='nav-link' to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </div>
-        <div className='nav-button-container'>
-          <NavLink className='nav-link' to='/polls' exact={true} activeClassName='active'>
-            Polls
-          </NavLink>
-        </div>
+        {user &&
+          <div className='nav-button-container'>
+            <NavLink className='nav-link' to='/users' exact={true} activeClassName='active'>
+              Users
+            </NavLink>
+          </div>
+        }
+        {user &&
+
+          <div className='nav-button-container'>
+            <NavLink className='nav-link' to='/polls' exact={true} activeClassName='active'>
+              Polls
+            </NavLink>
+          </div>
+        }
         {/* </div> */}
         {sessionLinks}
       </div>

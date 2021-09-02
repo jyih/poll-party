@@ -58,13 +58,19 @@ function App() {
             <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute>
+            {/* <Route path='/users' exact={true} >
+              <UsersList />
+            </Route>
+            <Route path='/users/:userId' exact={true} >
+              <User />
+            </Route> */}
 
-            <Route path='/create' exact={true}>
+            <ProtectedRoute path='/create' exact={true}>
               <PollCreate />
-            </Route>
-            <Route path='/polls/' exact={true}>
+            </ProtectedRoute>
+            <ProtectedRoute path='/polls/' exact={true}>
               <AllPolls />
-            </Route>
+            </ProtectedRoute>
             <Route path='/polls/:pollId/' exact={true}>
               <VoteForm />
             </Route>
