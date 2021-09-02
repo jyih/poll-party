@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
-  const poll = useSelector(state => state.poll)
+  // const poll = useSelector(state => state.poll)
   const dispatch = useDispatch();
 
   const onLogin = async (e, pEmail = email, pPassword = password) => {
@@ -29,9 +29,10 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return poll.id
-      ? <Redirect to={`/polls/${poll?.id}`} />
-      : <Redirect to='/' />;
+    return <Redirect to='/' />;
+    // return poll.id
+    //   ? <Redirect to={`/polls/${poll?.id}`} />
+    //   : <Redirect to='/' />;
   }
 
   return (

@@ -24,15 +24,15 @@ function User() {
   return (
     <>
       <ul>
-        <li>
+        {/* <li>
           <strong>User Id</strong> {userId}
-        </li>
+        </li> */}
         <li>
           <strong>Username</strong> {user.username}
         </li>
-        <li>
+        {/* <li>
           <strong>Email</strong> {user.email}
-        </li>
+        </li> */}
       </ul>
       <div>
         <PollList polls={user.polls} />

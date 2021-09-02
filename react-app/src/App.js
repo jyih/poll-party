@@ -13,6 +13,7 @@ import PollResults from './components/poll/PollResults';
 import PollCreate from './components/poll/PollCreate';
 import Splash from './components/Splash';
 import Footer from './components/footer/Footer';
+import AllPolls from './components/poll/AllPolls';
 // import PollEdit from './components/poll/PollEdit';
 
 function App() {
@@ -33,44 +34,48 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <div className='main-section'>
+        <div className='content-container'>
+          <Switch>
+            <ProtectedRoute path='/' exact={true} >
+              <h1>My Home Page</h1>
+            </ProtectedRoute>
 
-      <div className='content-container'>
-        <Switch>
-          <ProtectedRoute path='/' exact={true} >
-            <h1>My Home Page</h1>
-          </ProtectedRoute>
+            <Route path='/splash' exact={true}>
+              <Splash />
+            </Route>
 
-          <Route path='/splash' exact={true}>
-            <Splash />
-          </Route>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/sign-up' exact={true}>
+              <SignUpForm />
+            </Route>
 
-          <Route path='/login' exact={true}>
-            <LoginForm />
-          </Route>
-          <Route path='/sign-up' exact={true}>
-            <SignUpForm />
-          </Route>
+            <ProtectedRoute path='/users' exact={true} >
+              <UsersList />
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true} >
+              <User />
+            </ProtectedRoute>
 
-          <ProtectedRoute path='/users' exact={true} >
-            <UsersList />
-          </ProtectedRoute>
-          <ProtectedRoute path='/users/:userId' exact={true} >
-            <User />
-          </ProtectedRoute>
-
-          <Route path='/create' exact={true}>
-            <PollCreate />
-          </Route>
-          <Route path='/polls/:pollId/' exact={true}>
-            <VoteForm />
-          </Route>
-          <Route path='/polls/:pollId/results' exact={true}>
-            <PollResults />
-          </Route>
-          {/* <Route path='/polls/:pollId/edit' exact={true}>
+            <Route path='/create' exact={true}>
+              <PollCreate />
+            </Route>
+            <Route path='/polls/' exact={true}>
+              <AllPolls />
+            </Route>
+            <Route path='/polls/:pollId/' exact={true}>
+              <VoteForm />
+            </Route>
+            <Route path='/polls/:pollId/results' exact={true}>
+              <PollResults />
+            </Route>
+            {/* <Route path='/polls/:pollId/edit' exact={true}>
             <PollEdit handleCancel={(e) => <Redirect to='/polls/:pollId' />} />
           </Route> */}
-        </Switch>
+          </Switch>
+        </div>
       </div>
       <Footer />
     </BrowserRouter>
