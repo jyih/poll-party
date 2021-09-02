@@ -13,6 +13,7 @@ function PollEditModal({ setRefresh }) {
           <Modal onClose={() => setShowModal(false)}>
             <PollEdit
               handleCancel={() => setShowModal(false)}
+              showModal={() => setShowModal(true)}
             />
           </Modal>
         )}

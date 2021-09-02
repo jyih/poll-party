@@ -51,9 +51,6 @@ export const createPoll = (payload) => async (dispatch) => {
 }
 
 export const editPoll = (payload, id) => async (dispatch) => {
-  console.log('------------------------------------');
-  console.log('payload at input:', payload.options);
-  console.log('------------------------------------');
   const res = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -65,9 +62,6 @@ export const editPoll = (payload, id) => async (dispatch) => {
   })
   if (res.ok) {
     const data = await res.json();
-    console.log('------------------------------------');
-    console.log('res.json:', data);
-    console.log('------------------------------------');
     dispatch(set(data));
     if (data.errors) {
       return data.errors;
@@ -106,6 +100,23 @@ export const deletePoll = (id) => async (dispatch) => {
   })
   if (res.ok) {
     const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+    return data;
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
+export const deleteOption = (pollId, optionId) => async (dispatch) => {
+  const res = await fetch(`/api/polls/${pollId}/options/${optionId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(set(data));
     if (data.errors) {
       return data.errors;
     }

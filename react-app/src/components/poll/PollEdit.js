@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import * as pollActions from "../../store/poll"
 
-const PollEdit = ({ handleCancel }) => {
+const PollEdit = ({ handleCancel, showModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -11,7 +11,9 @@ const PollEdit = ({ handleCancel }) => {
   const poll = useSelector(state => state.poll)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState(poll?.question);
-  const [options, setOptions] = useState(Object.values(poll?.options).map(option => option.answer));
+  // const [options, setOptions] = useState(Object.values(poll?.options).map(option => option.answer));
+  const [options, setOptions] = useState(Object.values(poll?.options));
+  const [answers, setAnswers] = useState(Object.values(poll?.options).map(option => option.answer));
   // const [options, setOptions] = useState(['', '', '']);
   // const mappedOptions = [...poll?.options?.map(option => option.answer)]
 
@@ -19,27 +21,25 @@ const PollEdit = ({ handleCancel }) => {
     (async () => {
       await dispatch(pollActions.getPoll(params.pollId))
     })()
-  }, [dispatch, params])
+  }, [dispatch, params, options])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('------------------------------------');
+    console.log('options:', options);
+    console.log('answers:', answers);
+    console.log('------------------------------------');
     const payload = {
       'user_id': user.id,
       'question': question,
-      'options': options,
+      'options': answers,
     }
     const data = await dispatch(pollActions.editPoll(payload, params.pollId));
-    console.log('------------------------------------');
-    console.log(data);
-    console.log('------------------------------------');
     if (data?.errors) {
       setErrors(data.errors);
       console.log(data.errors)
     }
     else {
-      console.log('------------------------------------');
-      console.log('else statement in handlesubmit');
-      console.log('------------------------------------');
       handleCancel(e)
     }
   }
@@ -59,18 +59,27 @@ const PollEdit = ({ handleCancel }) => {
 
   const addOption = (e, index) => {
     e.preventDefault()
+    console.log('------------------------------------');
+    console.log('index', index);
+    console.log('------------------------------------');
+    // let answers = options.map(option => option.answer)
+    // if (index >= options.length - 1) {
     if (index >= options.length - 1) {
-      let newOptions = [...options, '']
-      return setOptions(newOptions);
+      let newOptions = [...answers, '']
+      return setAnswers(newOptions);
     }
   }
 
   const deleteOption = async (e, optionId) => {
     e.preventDefault()
-
+    await dispatch(pollActions.deleteOption(params.pollId, optionId))
+    handleCancel()
+    showModal()
   }
 
-  const answerOptions = options.map((answer, i) => {
+  const answerOptions = options.map((option, i) => {
+    let answer = option.answer
+    console.log('answerOptions route:', option.id, answer)
     return (
       <div className='form-input-container labeled side' key={i}>
         <label className='form-label side'>
@@ -85,6 +94,11 @@ const PollEdit = ({ handleCancel }) => {
           />
           {` chars. ${255 - answer?.length}/255`}
         </label>
+        <button
+          className='form-button button-caution'
+          type='button'
+          onClick={(e) => deleteOption(e, option.id)}
+        >Delete Option</button>
       </div>
     )
   })

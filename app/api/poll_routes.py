@@ -82,3 +82,12 @@ def poll_delete(id):
   db.session.delete(poll)
   db.session.commit()
   return {'message': f'Poll ${id} deleted'}
+
+@poll_routes.route('/<int:poll_id>/options/<int:option_id>', methods=['DELETE'])
+@login_required
+def option_delete(poll_id, option_id):
+  option = Option.query.get(option_id)
+  db.session.delete(option)
+  db.session.commit()
+  poll = Poll.query.get(poll_id)
+  return {**poll.get_options() }
