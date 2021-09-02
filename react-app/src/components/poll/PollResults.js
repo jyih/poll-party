@@ -27,9 +27,9 @@ const PollResults = () => {
       <div>
         {poll?.question}
       </div>
-      {poll?.options?.map(option => (
-        <div key={option.id}>
-          <p className='results-row'>
+      {poll?.options?.map((option, i) => (
+        <div key={i}>
+          <div className='results-row'>
             <div key={option.answer}>
               Option: {option.answer}
             </div>
@@ -39,7 +39,7 @@ const PollResults = () => {
             {/* <div>
               Insert Vote Bar
             </div> */}
-          </p>
+          </div>
         </div>
       ))}
       <div className='form-button-container'>

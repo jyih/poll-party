@@ -43,25 +43,32 @@ const NavBar = () => {
   return (
     <nav className='navbar-container'>
       <div className='navbar-content-container'>
-        <div className='navbar-left-container'>
-          <div className='nav-button-container nav-home'>
-            <div className='nav-logo-container'>
-              <img
-                className='nav-logo'
-                alt='Poll Party'
-                src='https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png'
-              />
-            </div>
-            <NavLink className='nav-link nav-home nav-site-title' to='/' exact={true} activeClassName='active'>
+        {/* <div className='navbar-left-container'> */}
+        <div className='nav-button-container nav-home'>
+          <div className='nav-logo-container'>
+            <img
+              className='nav-logo'
+              alt='Poll Party'
+              src='https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png'
+            />
+          </div>
+          <NavLink className='nav-link nav-home nav-site-title' to='/' exact={true} activeClassName='active'>
+            <strong>
               Poll Party
-            </NavLink>
-          </div>
-          <div className='nav-button-container'>
-            <NavLink className='nav-link' to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </div>
+            </strong>
+          </NavLink>
         </div>
+        <div className='nav-button-container'>
+          <NavLink className='nav-link' to='/users' exact={true} activeClassName='active'>
+            Users
+          </NavLink>
+        </div>
+        <div className='nav-button-container'>
+          <NavLink className='nav-link' to='/polls' exact={true} activeClassName='active'>
+            Polls
+          </NavLink>
+        </div>
+        {/* </div> */}
         {sessionLinks}
       </div>
     </nav>
