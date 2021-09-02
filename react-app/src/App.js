@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -14,7 +14,7 @@ import PollCreate from './components/poll/PollCreate';
 import Splash from './components/Splash';
 import Footer from './components/footer/Footer';
 import AllPolls from './components/poll/AllPolls';
-// import PollEdit from './components/poll/PollEdit';
+import PollEdit from './components/poll/PollEdit';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +38,7 @@ function App() {
         <div className='content-container'>
           <Switch>
             <ProtectedRoute path='/' exact={true} >
-              <h1>My Home Page</h1>
+              <h1>Create a Poll to get Started!</h1>
             </ProtectedRoute>
 
             <Route path='/splash' exact={true}>
@@ -72,8 +72,8 @@ function App() {
               <PollResults />
             </Route>
             {/* <Route path='/polls/:pollId/edit' exact={true}>
-            <PollEdit handleCancel={(e) => <Redirect to='/polls/:pollId' />} />
-          </Route> */}
+              <PollEdit handleCancel={() => <Redirect to='/polls/:pollId' />} />
+            </Route> */}
           </Switch>
         </div>
       </div>

@@ -37,6 +37,7 @@ const LoginForm = () => {
 
   return (
     <div className='form-container'>
+      <div className='form-title'>Login to Join the Party!</div>
       <form onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
@@ -62,13 +63,19 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <div className='form-button-container'>
-            <button className='form-button form-submit' type='submit'>Login</button>
-          </div>
-          <div className='form-button-container'>
-            <button className='form-button' onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
-          </div>
         </div>
+        {/* <div className='form-button-container'> */}
+          {/* <div className='form-button-container left'> */}
+            <div className='form-button-container'>
+              <button className='form-button button-primary' type='submit'>Login</button>
+            </div>
+          {/* </div>
+          <div className='form-button-container right'> */}
+            <div className='form-button-container'>
+              <button className='form-button' onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
+            </div>
+          {/* </div> */}
+        {/* </div> */}
       </form>
     </div>
   );

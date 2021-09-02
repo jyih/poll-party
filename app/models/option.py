@@ -22,5 +22,6 @@ class Option(db.Model):
             'id': self.id,
             'answer': self.answer,
             'poll_id': self.poll_id,
-            'votes': [vote.to_dict() for vote in self.votes],
+            'votes': {vote.to_dict()['id']:vote.to_dict() for vote in self.votes},
+            'count': len(self.votes)
         }

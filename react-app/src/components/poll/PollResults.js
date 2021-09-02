@@ -8,6 +8,7 @@ const PollResults = () => {
   const history = useHistory();
   const params = useParams();
   const poll = useSelector(state => state.poll)
+  const options = Object.values(poll.options).sort((a, b) => a.count > b.count);
 
   useEffect(() => {
     (async () => {
@@ -22,19 +23,18 @@ const PollResults = () => {
 
   return (
     <div className='form-container'>
-
       <div className='form-title'>Results</div>
       <div>
         {poll?.question}
       </div>
-      {poll?.options?.map((option, i) => (
+      {options?.map((option, i) => (
         <div key={i}>
           <div className='results-row'>
-            <div key={option.answer}>
-              Option: {option.answer}
+            <div>
+              {option?.answer}
             </div>
-            <div key={option.votes?.length}>
-              Votes: {option.votes?.length}
+            <div>
+              {((option.count / poll.total_votes) * 100).toFixed(2)}% ({option?.count} votes)
             </div>
             {/* <div>
               Insert Vote Bar

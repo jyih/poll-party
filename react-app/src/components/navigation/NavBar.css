@@ -152,8 +152,16 @@
   color: #fff;
 } */
 
-.nav-button.button-sign-up, .nav-button.button-create {
+.nav-button.button-primary, .nav-button.button-primary {
   background-color: #3EB991;
   color: #fff;
   border-style: none;
+}
+
+.nav-button:hover {
+  background-color: #4e4e54;
+}
+
+.nav-button.button-primary:hover, .nav-button.button-primary:hover {
+  background-color: #3baf8a;
 }

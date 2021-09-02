@@ -11,9 +11,9 @@ const PollEdit = ({ handleCancel }) => {
   const poll = useSelector(state => state.poll)
   const [errors, setErrors] = useState({});
   const [question, setQuestion] = useState(poll?.question);
+  const [options, setOptions] = useState(Object.values(poll?.options).map(option => option.answer));
   // const [options, setOptions] = useState(['', '', '']);
   // const mappedOptions = [...poll?.options?.map(option => option.answer)]
-  const [options, setOptions] = useState([...poll?.options?.map(option => option.answer)]);
 
   useEffect(() => {
     (async () => {
@@ -34,8 +34,12 @@ const PollEdit = ({ handleCancel }) => {
     console.log('------------------------------------');
     if (data?.errors) {
       setErrors(data.errors);
+      console.log(data.errors)
     }
     else {
+      console.log('------------------------------------');
+      console.log('else statement in handlesubmit');
+      console.log('------------------------------------');
       handleCancel(e)
     }
   }
@@ -63,10 +67,10 @@ const PollEdit = ({ handleCancel }) => {
 
   const answerOptions = options.map((answer, i) => {
     return (
-      <div key={i}>
-        <label className='form-label-side'>
+      <div className='form-input-container labeled side' key={i}>
+        <label className='form-label side'>
           <input
-            className='form-input-side-labeled'
+            className='form-input side-label'
             name={`option ${i}`}
             value={answer}
             required={i < 2}
@@ -74,15 +78,15 @@ const PollEdit = ({ handleCancel }) => {
             placeholder='Type an answer option...'
             onChange={(e) => updateOptions(e, i)}
           />
-          {` chars. ${255 - answer.length}/255`}
+          {` chars. ${255 - answer?.length}/255`}
         </label>
       </div>
     )
   })
 
   return (
-    <div className='form-container'>
-      <form onSubmit={handleSubmit}>
+    <div className='form-container form-edit'>
+      <form className='form-proper' onSubmit={handleSubmit}>
         <label>{errors?.question}</label>
         <label>Title</label>
         <div>
@@ -91,26 +95,32 @@ const PollEdit = ({ handleCancel }) => {
             type='text'
             value={question}
             required={true}
+            minLength={1}
             placeholder='Type your question here...'
             onChange={e => setQuestion(e.target.value)}
           />
         </div>
         <div>
           <label>Answer Options</label>
+          <label>{errors?.answers}</label>
           {answerOptions}
         </div>
         <button
           className='form-button'
+          type='button'
           onClick={e => addOption(e, options.length)}
         >Add Option</button>
-        <div className='form-button-container' >
+      </form>
+      <div className='form-button-container row'>
+        <div className='form-button-container left' >
           <button
-            className='form-button form-submit'
+            className='form-button button-primary'
             type='submit'
-            onClick={e => handleSubmit(e)}
           >Save Changes</button>
+        </div>
+        <div className='form-button-container right' >
           <button
-            className='form-button form-delete'
+            className='form-button button-caution'
             type='button'
             onClick={e => handleDelete(e)}
           >Delete Post</button>
@@ -120,7 +130,7 @@ const PollEdit = ({ handleCancel }) => {
             onClick={e => handleCancel(e)}
           >Cancel</button>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
