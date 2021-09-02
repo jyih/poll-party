@@ -65,6 +65,11 @@ const PollEdit = ({ handleCancel }) => {
     }
   }
 
+  const deleteOption = async (e, optionId) => {
+    e.preventDefault()
+
+  }
+
   const answerOptions = options.map((answer, i) => {
     return (
       <div className='form-input-container labeled side' key={i}>
