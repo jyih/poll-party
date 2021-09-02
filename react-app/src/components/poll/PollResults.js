@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import * as pollActions from "../../store/polls"
+import * as pollActions from "../../store/poll"
 
 const PollResults = () => {
   const dispatch = useDispatch();

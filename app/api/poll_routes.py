@@ -8,7 +8,8 @@ poll_routes = Blueprint('polls', __name__)
 @poll_routes.route('/')
 def polls():
   polls = Poll.query.all()
-  return {'polls': [poll.to_dict() for poll in polls]}
+  return {poll.to_dict()['id']:poll.to_dict() for poll in polls}
+  # return {'polls': [poll.to_dict() for poll in polls]}
 
 @poll_routes.route('/<int:id>')
 def poll(id):
