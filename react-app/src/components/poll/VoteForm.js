@@ -88,7 +88,7 @@ const VoteForm = () => {
           <div className='form-button-container'>
             <button className='form-button' type='button' onClick={e => handleResults(e)}>Results</button>
           </div>
-          {user.id == poll.user_id &&
+          {user?.id == poll?.user_id &&
             <PollEditModal />
           }
         </div>
