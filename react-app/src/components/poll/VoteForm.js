@@ -13,7 +13,7 @@ const VoteForm = () => {
   // const options = Object.values(poll.options);
   const options = poll.options ? Object.values(poll.options) : [];
   // const options = poll.options;
-  // const [options, setOptions] = useState(Object.values(poll.options))
+  // const [options, setOptions] = useState(poll.options ? Object.values(poll.options) : [])
   const [selectedOption, setSelectedOption] = useState(0);
   // const [refresh, setRefresh] = useState(true);
 
@@ -22,10 +22,15 @@ const VoteForm = () => {
     (async () => {
       await dispatch(pollActions.getPoll(params?.pollId))
     })()
+    // setOptions(Object.values(poll.options))
+    // console.log('options', options)
   }, [dispatch, params])
 
   const handleVote = async (e) => {
     e.preventDefault()
+    console.log('------------------------------------');
+    console.log('selectedOption', selectedOption);
+    console.log('------------------------------------');
     const data = await dispatch(pollActions.votePoll({
       'user_id': user.id,
       'poll_id': params.pollId,
@@ -77,14 +82,14 @@ const VoteForm = () => {
         <div className='form-button-container left'>
           <div className='form-button-container'>
             {user
-              ? <button className='form-button button-primary' type='submit'>Vote</button>
+              ? <button className='form-button button-primary' type='submit' onClick={e => handleVote(e)}>Vote</button>
               : <button className='form-button button-primary' type='button' onClick={e => handleToLogin(e)}>Log In to Vote</button>
             }
           </div>
         </div>
         <div className='form-button-container right'>
           <div className='form-button-container'>
-            <button className='form-button' onClick={e => handleResults(e)}>Results</button>
+            <button className='form-button' type='button' onClick={e => handleResults(e)}>Results</button>
           </div>
           <PollEditModal />
         </div>
