@@ -157,13 +157,22 @@ a:visited {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
 }
+
 .form-button-container.left {
  /* top | right | bottom | left */
   margin: 1em 10em 0 0;
 }
 
+.form-button-container.right{
+  display:flex;
+  justify-content: space-between;
+}
+
+.form-button-container.right button{
+  margin-right: 1em;
+}
 
 .form-button-container {
   margin-top: 20px;

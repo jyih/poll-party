@@ -7,14 +7,16 @@ function PollEditModal({ setRefresh }) {
 
   return (
     <>
-      <button className='form-button' onClick={() => setShowModal(true)}>Edit</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <PollEdit
-            handleCancel={() => setShowModal(false)}
-          />
-        </Modal>
-      )}
+      <div className='form-button-container'>
+        <button className='form-button' onClick={() => setShowModal(true)}>Edit</button>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <PollEdit
+              handleCancel={() => setShowModal(false)}
+            />
+          </Modal>
+        )}
+      </div>
     </>
   );
 }

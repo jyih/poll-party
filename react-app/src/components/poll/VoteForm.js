@@ -53,7 +53,7 @@ const VoteForm = () => {
       <div className='form-title'>Vote!</div>
       <div>{poll?.question}</div>
       <div>Choose one option:</div>
-      <form onSubmit={handleVote}>
+      <form className='form-proper' onSubmit={handleVote}>
         {options?.map((option, idx) => (
           <div key={idx} >
             <label htmlFor={`option${option.id}`}>
@@ -72,13 +72,17 @@ const VoteForm = () => {
       </form>
       <div className='form-button-container row'>
         <div className='form-button-container left'>
-          {user
-            ? <button className='form-button button-primary' type='submit'>Vote</button>
-            : <button className='form-button button-primary' type='button' onClick={e => handleToLogin(e)}>Log In to Vote</button>
-          }
+          <div className='form-button-container'>
+            {user
+              ? <button className='form-button button-primary' type='submit'>Vote</button>
+              : <button className='form-button button-primary' type='button' onClick={e => handleToLogin(e)}>Log In to Vote</button>
+            }
+          </div>
         </div>
         <div className='form-button-container right'>
-          <button className='form-button' onClick={e => handleResults(e)}>Results</button>
+          <div className='form-button-container'>
+            <button className='form-button' onClick={e => handleResults(e)}>Results</button>
+          </div>
           <PollEditModal />
         </div>
         {/* <button className='form-button' onClick={e => handleEdit(e)}>Edit</button> */}

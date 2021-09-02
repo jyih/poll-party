@@ -38,7 +38,7 @@ function App() {
         <div className='content-container'>
           <Switch>
             <ProtectedRoute path='/' exact={true} >
-              <h1>My Home Page</h1>
+              <h1>Create a Poll to get Started!</h1>
             </ProtectedRoute>
 
             <Route path='/splash' exact={true}>
