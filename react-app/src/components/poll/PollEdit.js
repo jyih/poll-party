@@ -116,6 +116,7 @@ const PollEdit = ({ handleCancel }) => {
           <button
             className='form-button button-primary'
             type='submit'
+            onClick={(e) => handleSubmit(e)}
           >Save Changes</button>
         </div>
         <div className='form-button-container right' >
