@@ -62,20 +62,24 @@ const SignUpForm = () => {
               required={true}
               minLength={3}
             />
-            {errors.username}
+            <div className='error-message' >
+              {errors.username}
+            </div>
           </label>
         </div>
         <div>
           <label>Email
-            {errors.email}
+            <input
+              type='email'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              required={true}
+            />
+            <div className='error-message' >
+              {errors.email}
+            </div>
           </label>
-          <input
-            type='email'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-            required={true}
-          />
         </div>
         <div>
           <label>Password
@@ -97,7 +101,9 @@ const SignUpForm = () => {
               value={repeatPassword}
               required={true}
             ></input>
-            {errors.password}
+            <div className='error-message' >
+              {errors.password}
+            </div>
           </label>
         </div>
         <div className='form-button-container'>

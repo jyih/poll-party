@@ -222,6 +222,10 @@ a:visited {
   background-color: #db554ed5
 }
 
+.error-message {
+  color: #db544e
+}
+
 .form-container .results-row {
   width: 100%;
   display: flex;

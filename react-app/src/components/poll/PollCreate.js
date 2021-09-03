@@ -65,7 +65,7 @@ const PollCreate = () => {
   return (
     <div className='form-container'>
       <form onSubmit={handleSubmit}>
-        <label>{errors?.question}</label>
+        <label className='error-message' >{errors?.question}</label>
         <label>Title</label>
         <div>
           <input
