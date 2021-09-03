@@ -67,10 +67,13 @@ a:visited {
   text-size-adjust: 100%;
   width: 768px;
   /* -webkit-font-smoothing: antialiased; */
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  max-height: 884px;
+  overflow: auto;
 }
 /* End General Styling */
 
