@@ -73,6 +73,7 @@ const SignUpForm = () => {
             Email <input
               type='email'
               name='email'
+              placeholder='example@site.com'
               onChange={updateEmail}
               value={email}
               required={true}
@@ -87,6 +88,7 @@ const SignUpForm = () => {
             Password <input
               type='password'
               name='password'
+              placeholder='••••••'
               onChange={updatePassword}
               value={password}
               required={true}
