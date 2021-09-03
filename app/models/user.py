@@ -30,8 +30,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'polls': [poll.to_dict() for poll in self.polls],
-            'votes': [vote.to_dict() for vote in self.votes],
+            'polls': {poll.to_dict()['id']:poll.to_dict() for poll in self.polls},
+            'votes': {vote.to_dict()['poll_id']:vote.to_dict() for vote in self.votes},
         }
 
     def get_polls(self):

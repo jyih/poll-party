@@ -9,6 +9,9 @@ const PollResults = () => {
   const params = useParams();
   const poll = useSelector(state => state.poll)
   const options = Object.values(poll.options).sort((a, b) => a.count > b.count);
+  const user = useSelector(state => state.session.user);
+  const selectedOption = user.votes[poll.id]?.option_id;
+
 
   useEffect(() => {
     (async () => {
@@ -24,13 +27,16 @@ const PollResults = () => {
   return (
     <div className='form-container'>
       <div className='form-title'>Results</div>
-      <div>
+      <div className='poll-question'>
         {poll?.question}
       </div>
       {options?.map((option, i) => (
         <div key={i}>
           <div className='results-row'>
-            <div>
+            <div className='option-container'>
+              {selectedOption == option.id &&
+                <img alt='check-mark' src='https://upload.wikimedia.org/wikipedia/commons/e/e0/Eo_circle_light-blue_checkmark.svg' />
+              }
               {option?.answer}
             </div>
             <div>

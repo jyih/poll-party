@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as pollActions from "../../store/poll"
+import * as sessionActions from "../../store/session"
 import PollEditModal from './PollEditModal';
 
 const VoteForm = () => {
@@ -10,22 +11,19 @@ const VoteForm = () => {
   const params = useParams();
   const user = useSelector(state => state.session.user);
   const poll = useSelector(state => state.poll);
-  // const options = Object.values(poll.options);
   const options = poll.options ? Object.values(poll.options) : [];
-  // const options = poll.options;
-  // const [options, setOptions] = useState(poll.options ? Object.values(poll.options) : [])
-  const [selectedOption, setSelectedOption] = useState(false);
-  // const [refresh, setRefresh] = useState(true);
+  const [selectedOption, setSelectedOption] = useState(
+    user.votes[poll.id]?.option_id
+  );
   const [error, setError] = useState('')
-
+  console.log('selectedOption:', selectedOption)
 
   useEffect(() => {
     (async () => {
       await dispatch(pollActions.getPoll(params?.pollId))
     })()
-    // setOptions(Object.values(poll.options))
-    // console.log('options', options)
-  }, [dispatch, params])
+    setSelectedOption(user.votes[params?.pollId].option_id)
+  }, [dispatch, params, user.votes])
 
   const handleVote = async (e) => {
     e.preventDefault()
@@ -38,6 +36,7 @@ const VoteForm = () => {
         'poll_id': params.pollId,
         'option_id': selectedOption,
       }));
+      await dispatch(sessionActions.authenticate())
       handleResults(e);
     }
   }
@@ -75,6 +74,7 @@ const VoteForm = () => {
                 id={`option${option.id}`}
                 value={option.id}
                 required={true}
+                checked={selectedOption == option.id}
                 onChange={e => setSelectedOption(e.target.value)}
               />
               {option.answer}

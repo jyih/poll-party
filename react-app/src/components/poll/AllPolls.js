@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import PollList from '../poll/PollList'
-import * as pollsActions from "../../store/polls"
+import * as pollsActions from "../../store/all_polls"
 
 const AllPolls = () => {
   // const [polls, setPolls] = useState([]);
   const dispatch = useDispatch()
-  const polls = useSelector(state => Object.values(state.polls))
+  const polls = useSelector(state => Object.values(state.all_polls))
   // const [polls, setPolls] = useState(Object.values(pollsState))
 
   useEffect(() => {
