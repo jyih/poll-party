@@ -67,7 +67,8 @@ const PollEdit = ({ handleCancel }) => {
             className='form-input side-label'
             name={`option ${i}`}
             value={answer}
-            required={i < 2}
+            // required={i < 2}
+            required={true}
             maxLength='255'
             placeholder='Type an answer option...'
             onChange={(e) => updateOptions(e, i)}
