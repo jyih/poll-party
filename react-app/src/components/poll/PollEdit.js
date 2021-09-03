@@ -77,7 +77,7 @@ const PollEdit = ({ handleCancel }) => {
     return (
       <div className='form-input-container labeled side' key={i}>
         {errors?.answers &&
-          <label>{errors.answers[i]}</label>
+          <label className='error-message' >{errors.answers[i]}</label>
         }
         <label className='form-label side'>
           <input
@@ -99,7 +99,7 @@ const PollEdit = ({ handleCancel }) => {
   return (
     <div className='form-container form-edit'>
       <form className='form-proper' onSubmit={handleSubmit}>
-        <label>{errors?.question}</label>
+        <label className='error-message' >{errors?.question}</label>
         <label>Title</label>
         <div>
           <input
