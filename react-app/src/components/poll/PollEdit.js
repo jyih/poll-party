@@ -23,18 +23,22 @@ const PollEdit = ({ handleCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = {
-      'user_id': user.id,
-      'question': question,
-      'options': options,
-    }
-    const data = await dispatch(pollActions.editPoll(payload, params.pollId));
-    if (data?.errors) {
-      setErrors(data.errors);
-      console.log(data.errors)
-    }
-    else {
-      handleCancel(e)
+    if (!question) {
+      setErrors({ 'question': 'Poll question cannot be empty.' })
+      setQuestion((poll?.question))
+    } else {
+      const payload = {
+        'user_id': user.id,
+        'question': question,
+        'options': options,
+      }
+      const data = await dispatch(pollActions.editPoll(payload, params.pollId));
+      if (data?.errors) {
+        setErrors(data.errors);
+      }
+      else {
+        handleCancel(e)
+      }
     }
   }
 
@@ -46,6 +50,16 @@ const PollEdit = ({ handleCancel }) => {
 
   const updateOptions = (e, index) => {
     let option = e.target.value;
+    if (!option) {
+      let answerErrors = { ...errors.answers };
+      answerErrors[index] = 'Answer option cannot be blank.'
+      return setErrors({ ...errors, 'answers': answerErrors })
+    }
+
+    // else if (!options) {
+    //   setErrors({ 'answers': 'Poll must contain at least 2 options.' })
+    //   setOptions(Object.values(poll?.options).map(option => option.answer))
+    // }
     let newOptions = options.slice();
     newOptions[index] = option;
     return setOptions(newOptions);
@@ -62,12 +76,16 @@ const PollEdit = ({ handleCancel }) => {
   const answerOptions = options.map((answer, i) => {
     return (
       <div className='form-input-container labeled side' key={i}>
+        {errors?.answers &&
+          <label>{errors.answers[i]}</label>
+        }
         <label className='form-label side'>
           <input
             className='form-input side-label'
             name={`option ${i}`}
             value={answer}
-            required={i < 2}
+            // required={i < 2}
+            required={true}
             maxLength='255'
             placeholder='Type an answer option...'
             onChange={(e) => updateOptions(e, i)}
@@ -88,7 +106,7 @@ const PollEdit = ({ handleCancel }) => {
             name='question'
             type='text'
             value={question}
-            required={true}
+            required
             minLength={1}
             placeholder='Type your question here...'
             onChange={e => setQuestion(e.target.value)}
@@ -96,14 +114,15 @@ const PollEdit = ({ handleCancel }) => {
         </div>
         <div>
           <label>Answer Options</label>
-          <label>{errors?.answers}</label>
           {answerOptions}
         </div>
-        <button
-          className='form-button'
-          type='button'
-          onClick={e => addOption(e, options.length)}
-        >Add Option</button>
+        <div className='form-button-container'>
+          <button
+            className='form-button'
+            type='button'
+            onClick={e => addOption(e, options.length)}
+          >Add Option</button>
+        </div>
       </form>
       <div className='form-button-container row'>
         <div className='form-button-container left' >

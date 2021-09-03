@@ -23,21 +23,16 @@ function User() {
 
   return (
     <>
-      <div>
-        {/* <li>
-          <strong>User Id</strong> {userId}
-        </li> */}
-        <div>
-          <strong>Username</strong> {user.username}
+      <div className='list-container'>
+        <div className='title'>
+          <strong>User: </strong> {user.username}
         </div>
-        {/* <li>
-          <strong>Email</strong> {user.email}
-        </li> */}
-      </div>
-      <div>
-        <PollList polls={user.polls} />
+        <div className='list'>
+          <PollList polls={user.polls} />
+        </div>
       </div>
     </>
   );
 }
+
 export default User;
