@@ -72,10 +72,17 @@ const NavBar = () => {
             </NavLink>
           </div>
         }
+        {user &&
+          <div className='nav-button-container'>
+            <NavLink className='nav-link' to={`/users/${user.id}`} exact={true} activeClassName='active'>
+              My Polls
+            </NavLink>
+          </div>
+        }
         {/* </div> */}
         {sessionLinks}
       </div>
-    </nav>
+    </nav >
   );
 }
 
