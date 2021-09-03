@@ -234,11 +234,26 @@ a:visited {
 .form-container .results-row {
   width: 100%;
   display: flex;
-  /* flex-direction: row; */
   justify-content: space-between;
+}
+
+.form-container .option-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-container .option-container img {
+  height: 1em;
+  margin-right: 2px;
 }
 
 .form-container.form-edit .form-button-container.row {
   padding-bottom: 10px
 }
+
 /* End Form Styling */
+
+.list-container {
+  overflow-y: auto;
+}

@@ -23,7 +23,9 @@ function UsersList() {
 
   return (
     <div className='list-container'>
-      <div className='title'>User List:</div>
+      <div className='title'>
+        <strong>User List:</strong>
+      </div>
       <div className='list'>{userComponents}</div>
     </div>
   );

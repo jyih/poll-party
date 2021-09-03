@@ -5,7 +5,7 @@
 # Poll Party
 Poll Party is a poll creator app. It is a fullstack React App made with a Redux state manager and a backend using Python, Flask, SQL-Alchemy, and PostgresSQL and any other technologies.
 
-* View the <a href='https://poll-party-app.herokuapp.com/'>Poll Party</a> App Live
+* View the <a href='https://poll-party.herokuapp.com/'>Poll Party</a> App Live
 
 * Reference to the Poll Party <a href='https://www.github.com/{github-handle}/poll-party/wiki'>Wiki Docs</a>
 
@@ -34,10 +34,11 @@ Poll Party is a poll creator app. It is a fullstack React App made with a Redux 
 ## Features
 
 ### Sign In and Sign Up
-![Sign Up](./readme-assets/images/signup.jpg)
-![Login](./readme-assets/images/login.jpg)
+<!-- ![Sign Up](./readme-assets/images/signup.jpg) -->
+<!-- ![Login](./readme-assets/images/login.jpg) -->
+Log in as a demo user, or create and log into your own account to see what Poll Party has to offer.
 
-### Feed Page
+### Polls
 Poll Party feed displays all {resource-1-plural}
 Discover and search for new {resource-1-plural}
 ![Feed Page](./readme-assets/images/feed.jpg)
@@ -159,9 +160,9 @@ print('add code snippet 1 here')
 <!-- <a href="https://angel.co/u/{angel-list-handle}"><img src="./readme-assets/logos/angellist-logo.png" height="28" align="middle" /></a> -->
 <a href="https://github.com/jyih"><img src="./readme-assets/logos/github-logo.png" height="38" align="middle" /></a>
 
-{johnathanyih@gmail.com}
+johnathanyih@gmail.com
 
 
 ## Special Thanks
 * Fellow peers who have given me support and community: [Ji](https://github.com/ji-k), [Brandon](https://github.com/Omstachu), [Michelle](https://github.com/michellekontoff), [Nico](https://github.com/nicopierson), and [Monte](https://github.com/theflaggship)
-* Mentors who have given me their time and effort: [Peter](https://github.com/lazytangent), [Warren](https://github.com/tamagrijr), and [Javier](https://github.com/javiermortiz)
+* Mentors who have given me their time and effort: [Peter](https://github.com/lazytangent), [Warren](https://github.com/tamagrijr), [Olivia](https://github.com/OByrnes) and [Javier](https://github.com/javiermortiz)
