@@ -4,9 +4,6 @@ import { NavLink } from "react-router-dom";
 const PollList = ({ polls }) => {
   return (
     <>
-      <strong>
-        List of Polls:
-      </strong>
       {polls?.length
         ?
         <div>
@@ -20,7 +17,7 @@ const PollList = ({ polls }) => {
         </div>
         :
         <div>
-          (User has not created any polls)
+          (No polls created)
         </div>
       }
     </>

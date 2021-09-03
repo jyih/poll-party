@@ -22,8 +22,11 @@ const AllPolls = () => {
 
   return (
     <>
-      <div>
-        <div>
+      <div className='list-container'>
+        <div className='title'>
+          <strong>List of Polls:</strong>
+        </div>
+        <div className='list'>
           <PollList polls={polls} />
         </div>
       </div>

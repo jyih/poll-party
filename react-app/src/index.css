@@ -240,6 +240,7 @@ a:visited {
 .form-container .option-container{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .form-container .option-container img {
@@ -252,3 +253,7 @@ a:visited {
 }
 
 /* End Form Styling */
+
+.list-container {
+  overflow-y: auto;
+}
