@@ -49,11 +49,12 @@ const PollEdit = ({ handleCancel }) => {
   }
 
   const updateOptions = (e, index) => {
+    setErrors({ ...errors, 'answers': [] })
     let option = e.target.value;
     if (!option) {
       let answerErrors = { ...errors.answers };
-      answerErrors[index] = 'Answer option cannot be blank.'
-      return setErrors({ ...errors, 'answers': answerErrors })
+      answerErrors[index] = 'Answer option cannot be blank, or changes will not be saved.'
+      setErrors({ ...errors, 'answers': answerErrors })
     }
 
     // else if (!options) {
@@ -99,14 +100,19 @@ const PollEdit = ({ handleCancel }) => {
   return (
     <div className='form-container form-edit'>
       <form className='form-proper' onSubmit={handleSubmit}>
-        <label className='error-message' >{errors?.question}</label>
-        <label>Title</label>
         <div>
-          <input
+          <label>Title</label>
+        </div>
+        <div className='error-message'>
+          <label className='error-message' >{errors?.question}</label>
+        </div>
+        <div>
+          <textarea
             name='question'
-            type='text'
+            // type='text'
             value={question}
             required
+            maxLength='255'
             minLength={1}
             placeholder='Type your question here...'
             onChange={e => setQuestion(e.target.value)}
@@ -137,7 +143,7 @@ const PollEdit = ({ handleCancel }) => {
             className='form-button button-caution'
             type='button'
             onClick={e => handleDelete(e)}
-          >Delete Post</button>
+          >Delete Poll</button>
           <button
             className='form-button'
             type='button'

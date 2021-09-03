@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import WelcomeMessage from './WelcomeMessage';
 
 const Splash = () => {
 
@@ -12,7 +14,14 @@ const Splash = () => {
         width="600"
         height="200">
       </iframe> */}
-      <h1>Login to Join the Party!</h1>
+      <div>
+        <WelcomeMessage />
+        <p>
+          <NavLink className='form-link' to='/login' exact={true} >
+            Login
+          </NavLink>  to get started!
+        </p>
+      </div>
     </>
   )
 }

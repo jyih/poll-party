@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
@@ -46,6 +46,7 @@ const SignUpForm = () => {
 
   return (
     <div className='form-container'>
+      <h1 className='form-title'>Create a Free Account</h1>
       <form onSubmit={onSignUp}>
         {/* <div>
           {errors?.map((error, ind) => (
@@ -53,8 +54,8 @@ const SignUpForm = () => {
           ))}
         </div> */}
         <div>
-          <label>User Name
-            <input
+          <label>
+            User Name <input
               type='text'
               name='username'
               onChange={updateUsername}
@@ -68,8 +69,8 @@ const SignUpForm = () => {
           </label>
         </div>
         <div>
-          <label>Email
-            <input
+          <label>
+            Email <input
               type='email'
               name='email'
               onChange={updateEmail}
@@ -82,8 +83,8 @@ const SignUpForm = () => {
           </label>
         </div>
         <div>
-          <label>Password
-            <input
+          <label>
+            Password <input
               type='password'
               name='password'
               onChange={updatePassword}
@@ -93,8 +94,8 @@ const SignUpForm = () => {
           </label>
         </div>
         <div>
-          <label>Confirm Password
-            <input
+          <label>
+            Confirm Password <input
               type='password'
               name='repeat_password'
               onChange={updateRepeatPassword}
@@ -110,6 +111,11 @@ const SignUpForm = () => {
           <button className='form-button button-primary' type='submit'>Sign Up</button>
         </div>
       </form>
+      <div className='form-bottom-row'>
+        Already have an account? <NavLink className='form-link' to='/login' exact={true} >
+          Log in.
+        </NavLink>
+      </div>
     </div>
   );
 };

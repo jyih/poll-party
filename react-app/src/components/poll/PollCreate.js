@@ -68,14 +68,16 @@ const PollCreate = () => {
         <label className='error-message' >{errors?.question}</label>
         <label>Title</label>
         <div>
-          <input
+          <textarea
             name='question'
-            type='text'
+            // type='text'
             value={question}
             required={true}
+            maxLength='255'
             placeholder='Type your question here...'
             onChange={e => setQuestion(e.target.value)}
           />
+          {` chars. ${255 - question?.length}/255`}
         </div>
         <div>
           <label>Answer Options</label>
