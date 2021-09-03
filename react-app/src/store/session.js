@@ -24,9 +24,6 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    console.log('DATA from authenticate------------------------------------');
-    console.log(data);
-    console.log('------------------------------------');
     dispatch(setUser(data));
   }
 }

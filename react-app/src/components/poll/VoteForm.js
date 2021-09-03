@@ -16,7 +16,6 @@ const VoteForm = () => {
     user.votes[poll.id]?.option_id
   );
   const [error, setError] = useState('')
-  console.log('selectedOption:', selectedOption)
 
   useEffect(() => {
     (async () => {
@@ -27,7 +26,6 @@ const VoteForm = () => {
 
   const handleVote = async (e) => {
     e.preventDefault()
-    console.log('selected:', selectedOption)
     if (!selectedOption) {
       return setError('Must choose an option to vote')
     } else {

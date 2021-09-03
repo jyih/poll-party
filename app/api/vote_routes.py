@@ -44,7 +44,6 @@ def vote_cast():
 @vote_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def vote_delete(id):
-  print('entered delete route')
   vote = Vote.query.get(id)
   db.session.delete(vote)
   db.session.commit()
