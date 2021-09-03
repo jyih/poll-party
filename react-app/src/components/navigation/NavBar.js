@@ -66,7 +66,6 @@ const NavBar = () => {
           </div>
         }
         {user &&
-
           <div className='nav-button-container'>
             <NavLink className='nav-link' to='/polls' exact={true} activeClassName='active'>
               Polls
