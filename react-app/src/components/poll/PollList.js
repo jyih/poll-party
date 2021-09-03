@@ -7,7 +7,7 @@ const PollList = ({ polls }) => {
       <strong>
         List of Polls:
       </strong>
-      {polls.length
+      {polls?.length
         ?
         <div>
           {polls?.map((poll, i) => (
