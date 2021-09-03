@@ -51,9 +51,6 @@ export const createPoll = (payload) => async (dispatch) => {
 }
 
 export const editPoll = (payload, id) => async (dispatch) => {
-  console.log('------------------------------------');
-  console.log('payload at input:', payload.options);
-  console.log('------------------------------------');
   const res = await fetch(`/api/polls/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -65,9 +62,6 @@ export const editPoll = (payload, id) => async (dispatch) => {
   })
   if (res.ok) {
     const data = await res.json();
-    console.log('------------------------------------');
-    console.log('res.json:', data);
-    console.log('------------------------------------');
     dispatch(set(data));
     if (data.errors) {
       return data.errors;
