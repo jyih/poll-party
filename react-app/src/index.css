@@ -89,7 +89,7 @@ a:visited {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-height: 800px;
+  max-height: 690px;
 
   /* align-items: center; */
 }
