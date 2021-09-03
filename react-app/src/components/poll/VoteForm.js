@@ -14,8 +14,9 @@ const VoteForm = () => {
   const options = poll.options ? Object.values(poll.options) : [];
   // const options = poll.options;
   // const [options, setOptions] = useState(poll.options ? Object.values(poll.options) : [])
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(false);
   // const [refresh, setRefresh] = useState(true);
+  const [error, setError] = useState('')
 
 
   useEffect(() => {
@@ -28,19 +29,22 @@ const VoteForm = () => {
 
   const handleVote = async (e) => {
     e.preventDefault()
-    const data = await dispatch(pollActions.votePoll({
-      'user_id': user.id,
-      'poll_id': params.pollId,
-      'option_id': selectedOption,
-    }));
-    console.log(data)
-    handleResults(e);
+    console.log('selected:', selectedOption)
+    if (!selectedOption) {
+      return setError('Must choose an option to vote')
+    } else {
+      await dispatch(pollActions.votePoll({
+        'user_id': user.id,
+        'poll_id': params.pollId,
+        'option_id': selectedOption,
+      }));
+      handleResults(e);
+    }
   }
 
   const handleResults = (e) => {
     e.preventDefault()
     history.push(`/polls/${params.pollId}/results`)
-
   }
 
   // const handleEdit = (e) => {
@@ -56,9 +60,12 @@ const VoteForm = () => {
   return (
     <div className='form-container'>
       <div className='form-title'>Vote!</div>
-      <div>{poll?.question}</div>
+      <div className='poll-question'>{poll?.question}</div>
       <div>Choose one option:</div>
       <form className='form-proper' onSubmit={handleVote}>
+        {error &&
+          <div className='error-message'>{error}</div>
+        }
         {options?.map((option, idx) => (
           <div key={idx} >
             <label htmlFor={`option${option.id}`}>
@@ -67,7 +74,7 @@ const VoteForm = () => {
                 name='poll-option'
                 id={`option${option.id}`}
                 value={option.id}
-                required
+                required={true}
                 onChange={e => setSelectedOption(e.target.value)}
               />
               {option.answer}

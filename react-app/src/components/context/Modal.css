@@ -22,4 +22,5 @@
   position: absolute;
   background-color:#37393f;
   border-radius: 6px;
+  overflow-y: auto;
 }
