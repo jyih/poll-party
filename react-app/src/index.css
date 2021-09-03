@@ -92,7 +92,6 @@ a:visited {
   flex-direction: column;
   justify-content: space-between;
   max-height: 600px;
-  /* align-items: center; */
 }
 
 .form-buffer.bottom{
@@ -108,7 +107,6 @@ a:visited {
 }
 
 .form-container label {
-  /* display: block; */
   display: inline-block;
   margin-top: 15px;
   color: #FEFEFE;
@@ -128,14 +126,10 @@ a:visited {
 .form-container input[name='question'], .form-container textarea[name='question']{
   width: 100%;
   height: 4em;
-  /* overflow-wrap: normal ; */
 }
 
 .form-container.labeled.side {
   display: inline-block;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between; */
 }
 
 .form-container input[type='radio'] input[name='poll-option']{
@@ -155,18 +149,20 @@ a:visited {
   justify-content: space-between;
 }
 
-.form-container input:hover {
+.form-container input:hover,
+.form-container textarea:hover {
   border-color: white
 }
 
-.form-container input:focus{
+.form-container input:focus, 
+.form-container textarea:focus {
   border: 5px solid teal;
   transition: 0.6s
 }
 
-.form-container input::placeholder{
+/* .form-container input::placeholder{
   color: #b9bbbe;
-}
+} */
 
 .form-button-container.row {
   display: flex;

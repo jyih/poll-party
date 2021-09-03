@@ -28,7 +28,7 @@ const LoginMessage = () => {
           <p className='login-message text'>
             And most importantly, <NavLink
               className='form-link'
-              to='/login'
+              to='/create'
               exact={true} >create
             </NavLink> your own!
           </p>
