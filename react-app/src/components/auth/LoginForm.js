@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
@@ -37,46 +37,52 @@ const LoginForm = () => {
 
   return (
     <div className='form-container'>
-      <div className='form-title'>Login to Join the Party!</div>
+      <h1 className='form-title'>Welcome Back!</h1>
+      <div >Login to your Poll Party account</div>
       <form onSubmit={onLogin}>
-        <div>
+        {/* <div>
           {errors.map((error, ind) => (
             <div className='error-message' key={ind}>{error}</div>
           ))}
+        </div> */}
+        <div>
+          <label htmlFor='email'>{'Email '}
+            <input
+              name='email'
+              type='email'
+              placeholder='example@site.com'
+              value={email}
+              required
+              onChange={updateEmail}
+            />
+          </label>
         </div>
         <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='example@site.com'
-            value={email}
-            onChange={updateEmail}
-          />
+          <label htmlFor='password'>{'Password '}
+            <input
+              name='password'
+              type='password'
+              placeholder='••••••'
+              value={password}
+              required
+              onChange={updatePassword}
+            />
+          </label>
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='••••••'
-            value={password}
-            onChange={updatePassword}
-          />
+        <div className='form-button-container login-form'>
+          <div className='form-button-container'>
+            <button className='form-button button-primary' type='submit'>Login</button>
+          </div>
+          <div className='form-button-container'>
+            <button className='form-button' onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
+          </div>
         </div>
-        {/* <div className='form-button-container'> */}
-        {/* <div className='form-button-container left'> */}
-        <div className='form-button-container'>
-          <button className='form-button button-primary' type='submit'>Login</button>
-        </div>
-        {/* </div>
-          <div className='form-button-container right'> */}
-        <div className='form-button-container'>
-          <button className='form-button' onClick={e => onLogin(e, 'demo@aa.io', 'password')}>Demo Login</button>
-        </div>
-        {/* </div> */}
-        {/* </div> */}
       </form>
+      <div className='form-bottom-row'>
+        Don't have an account yet? <NavLink className='form-link' to='/sign-up' exact={true} >
+          Sign up.
+        </NavLink>
+      </div>
     </div>
   );
 };

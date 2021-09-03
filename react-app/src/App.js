@@ -14,6 +14,7 @@ import PollCreate from './components/poll/PollCreate';
 import Splash from './components/Splash';
 import Footer from './components/footer/Footer';
 import AllPolls from './components/poll/AllPolls';
+import LoginMessage from './components/LoginMessage';
 // import PollEdit from './components/poll/PollEdit';
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
         <div className='content-container'>
           <Switch>
             <ProtectedRoute path='/' exact={true} >
-              <h1>Create a Poll to get Started!</h1>
+              <LoginMessage />
             </ProtectedRoute>
 
             <Route path='/splash' exact={true}>
