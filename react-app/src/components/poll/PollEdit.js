@@ -17,7 +17,7 @@ const PollEdit = ({ handleCancel }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await dispatch(pollActions.getPoll(params.pollId))
+      await dispatch(pollActions.getPoll(params.pollId))
     })()
   }, [dispatch, params])
 
