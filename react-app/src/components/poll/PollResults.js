@@ -26,10 +26,8 @@ const PollResults = () => {
 
   return (
     <div className='form-container'>
-      <div className='form-title'>Results</div>
-      <div className='poll-question'>
-        {poll?.question}
-      </div>
+      <h1 className='form-title'>Results</h1>
+      <h3 className='poll-question'>{poll?.question}</h3>
       {options?.map((option, i) => (
         <div key={i}>
           <div className='results-row'>
@@ -40,7 +38,9 @@ const PollResults = () => {
               {option?.answer}
             </div>
             <div>
-              {poll.total_votes ? ((option.count / poll.total_votes) * 100).toFixed(2) : 0}% ({option?.count} votes)
+              <span className='vote-percentage'>
+                {poll.total_votes ? ((option.count / poll.total_votes) * 100).toFixed(2) : 0}%
+              </span> ({option?.count} votes)
             </div>
             {/* <div>
               Insert Vote Bar
@@ -48,7 +48,7 @@ const PollResults = () => {
           </div>
         </div>
       ))}
-      <div>
+      <div className='vote-total'>
         Total Votes: {poll.total_votes}
       </div>
       <div className='form-button-container'>

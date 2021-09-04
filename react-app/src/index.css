@@ -112,7 +112,8 @@ a:visited {
   color: #FEFEFE;
 }
 
-.form-container input, .form-container textarea {
+.form-container input,
+.form-container textarea {
   display: inline;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -123,7 +124,8 @@ a:visited {
   height: 2em;
 }
 
-.form-container input[name='question'], .form-container textarea[name='question']{
+.form-container input[name='question'],
+.form-container textarea[name='question']{
   width: 100%;
   height: 4em;
 }
@@ -135,6 +137,15 @@ a:visited {
 .form-container input[type='radio'] input[name='poll-option']{
   width: 100%;
 }
+
+.form-container .vote-option-container,
+.form-container .vote-option-container label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-container .form-input.side-label {
   display: inline-block;
   width: 70%;
@@ -147,6 +158,8 @@ a:visited {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  font-size: .9em;
 }
 
 .form-container input:hover,
@@ -154,7 +167,7 @@ a:visited {
   border-color: white
 }
 
-.form-container input:focus, 
+.form-container input:focus,
 .form-container textarea:focus {
   border: 5px solid teal;
   transition: 0.6s
@@ -172,7 +185,7 @@ a:visited {
 }
 
 .form-button-container.left {
- /* top | right | bottom | left */
+  /* top | right | bottom | left */
   margin: 1em 10em 0 0;
 }
 
@@ -187,11 +200,8 @@ a:visited {
 
 .form-button-container {
   margin-top: 20px;
-  /* margin: auto; */
   text-align: center;
   display: inline-block;
-  /* display: flex; */
-  /* justify-content: space-between; */
 }
 
 .form-button {
@@ -235,6 +245,15 @@ a:visited {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: #FEFEFE;
+}
+
+.form-container .results-row .option-container,
+.form-container .results-row .option-container,
+.form-container .results-row .vote-percentage,
+.form-container .vote-total
+{
+  color: #FEFEFE;
 }
 
 .form-container .option-container{
@@ -264,13 +283,11 @@ a:visited {
   color: #FEFEFE;
 }
 
-
 .form-button-container.login-form {
   text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* align-items: center; */
   margin: auto 25% auto;
 }
 /* End Form Styling */

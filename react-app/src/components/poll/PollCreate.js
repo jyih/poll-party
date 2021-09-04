@@ -66,18 +66,20 @@ const PollCreate = () => {
     <div className='form-container'>
       <form onSubmit={handleSubmit}>
         <label className='error-message' >{errors?.question}</label>
-        <label>Title</label>
-        <div>
-          <textarea
-            name='question'
-            // type='text'
-            value={question}
-            required={true}
-            maxLength='255'
-            placeholder='Type your question here...'
-            onChange={e => setQuestion(e.target.value)}
-          />
-          {` chars. ${255 - question?.length}/255`}
+        <div className='form-input-container labeled side'>
+          <label>Title</label>
+          <label className='form-label side'>
+            <textarea
+              name='question'
+              // type='text'
+              value={question}
+              required={true}
+              maxLength='255'
+              placeholder='Type your question here...'
+              onChange={e => setQuestion(e.target.value)}
+            />
+            {` chars. ${255 - question?.length}/255`}
+          </label>
         </div>
         <div>
           <label>Answer Options</label>

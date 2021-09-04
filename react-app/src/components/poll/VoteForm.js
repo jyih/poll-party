@@ -11,7 +11,7 @@ const VoteForm = () => {
   const params = useParams();
   const user = useSelector(state => state.session.user);
   const poll = useSelector(state => state.poll);
-  const options = poll.options ? Object.values(poll.options) : [];
+  const options = poll?.options ? Object.values(poll.options) : [];
   const [selectedOption, setSelectedOption] = useState(
     user.votes[poll.id]?.option_id
   );
@@ -21,7 +21,7 @@ const VoteForm = () => {
     (async () => {
       await dispatch(pollActions.getPoll(params?.pollId))
     })()
-    setSelectedOption(user.votes[params?.pollId].option_id)
+    setSelectedOption(user.votes[params?.pollId]?.option_id)
   }, [dispatch, params, user.votes])
 
   const handleVote = async (e) => {
@@ -55,16 +55,16 @@ const VoteForm = () => {
   }
 
   return (
-    <div className='form-container'>
-      <div className='form-title'>Vote!</div>
-      <div className='poll-question'>{poll?.question}</div>
+    <div className='form-container vote'>
+      <h1 className='form-title'>Vote!</h1>
+      <h3 className='poll-question'>{poll?.question}</h3>
       <div>Choose one option:</div>
       <form className='form-proper' onSubmit={handleVote}>
         {error &&
           <div className='error-message'>{error}</div>
         }
         {options?.map((option, idx) => (
-          <div key={idx} >
+          <div className='vote-option-container' key={idx} >
             <label htmlFor={`option${option.id}`}>
               <input
                 type="radio"
@@ -74,8 +74,7 @@ const VoteForm = () => {
                 required={true}
                 checked={selectedOption == option.id}
                 onChange={e => setSelectedOption(e.target.value)}
-              />
-              {option.answer}
+              /> {option.answer}
             </label>
           </div>
         ))}
