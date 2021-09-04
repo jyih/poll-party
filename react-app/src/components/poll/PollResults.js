@@ -32,7 +32,7 @@ const PollResults = () => {
         <div key={i}>
           <div className='results-row'>
             <div className='option-container'>
-              {selectedOption == option.id &&
+              {parseInt(selectedOption) === parseInt(option.id) &&
                 <img alt='check-mark' src='https://upload.wikimedia.org/wikipedia/commons/e/e0/Eo_circle_light-blue_checkmark.svg' />
               }
               {option?.answer}

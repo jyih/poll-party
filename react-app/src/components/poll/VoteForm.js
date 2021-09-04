@@ -72,7 +72,7 @@ const VoteForm = () => {
                 id={`option${option.id}`}
                 value={option.id}
                 required={true}
-                checked={selectedOption == option.id}
+                checked={parseInt(selectedOption) === parseInt(option.id)}
                 onChange={e => setSelectedOption(e.target.value)}
               /> {option.answer}
             </label>
@@ -92,7 +92,7 @@ const VoteForm = () => {
           <div className='form-button-container'>
             <button className='form-button' type='button' onClick={e => handleResults(e)}>Results</button>
           </div>
-          {user?.id == poll?.user_id &&
+          {parseInt(user?.id) === parseInt(poll?.user_id) &&
             <PollEditModal />
           }
         </div>
