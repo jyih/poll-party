@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import * as pollActions from "../../store/poll"
+import ErrorPage from '../ErrorPage';
 
 const PollResults = () => {
   const dispatch = useDispatch();
@@ -11,11 +12,14 @@ const PollResults = () => {
   const options = Object.values(poll.options).sort((a, b) => a.count > b.count);
   const user = useSelector(state => state.session.user);
   const selectedOption = user.votes[poll.id]?.option_id;
-
+  const [errorPage, setErrorPage] = useState(false)
 
   useEffect(() => {
     (async () => {
-      await dispatch(pollActions.getPoll(params.pollId))
+      const data = await dispatch(pollActions.getPoll(params.pollId))
+      if (data.errors) {
+        setErrorPage(true)
+      }
     })()
   }, [dispatch, params])
 
@@ -25,6 +29,7 @@ const PollResults = () => {
   }
 
   return (
+    <>{errorPage ? <ErrorPage /> :
     <div className='form-container'>
       <h1 className='form-title'>Results</h1>
       <h3 className='poll-question'>{poll?.question}</h3>
@@ -55,6 +60,7 @@ const PollResults = () => {
         <button className='form-button' onClick={e => handleOnClick(e)}>Back to Poll</button>
       </div>
     </div>
+    }</>
   );
 }
 

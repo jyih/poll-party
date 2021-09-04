@@ -17,7 +17,7 @@ const PollEdit = ({ handleCancel }) => {
 
   useEffect(() => {
     (async () => {
-      await dispatch(pollActions.getPoll(params.pollId))
+      const data = await dispatch(pollActions.getPoll(params.pollId))
     })()
   }, [dispatch, params])
 
@@ -37,7 +37,7 @@ const PollEdit = ({ handleCancel }) => {
         setErrors(data.errors);
       }
       else {
-        handleCancel(e)
+        handleCancel()
       }
     }
   }
@@ -45,7 +45,7 @@ const PollEdit = ({ handleCancel }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(pollActions.deletePoll(params.pollId))
-    history.push(`/`)
+    history.push(`/users/${user.id}`)
   }
 
   const updateOptions = (e, index) => {
@@ -147,7 +147,7 @@ const PollEdit = ({ handleCancel }) => {
           <button
             className='form-button'
             type='button'
-            onClick={e => handleCancel(e)}
+            onClick={e => handleCancel()}
           >Cancel</button>
         </div>
       </div>

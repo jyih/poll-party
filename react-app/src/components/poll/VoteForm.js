@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as pollActions from "../../store/poll"
 import * as sessionActions from "../../store/session"
+import ErrorPage from '../ErrorPage';
 import PollEditModal from './PollEditModal';
 
 const VoteForm = () => {
@@ -16,10 +17,14 @@ const VoteForm = () => {
     user.votes[poll.id]?.option_id
   );
   const [error, setError] = useState('')
+  const [errorPage, setErrorPage] = useState(false)
 
   useEffect(() => {
     (async () => {
-      await dispatch(pollActions.getPoll(params?.pollId))
+      const data = await dispatch(pollActions.getPoll(params?.pollId))
+      if (data.errors) {
+        setErrorPage(true)
+      }
     })()
     setSelectedOption(user.votes[params?.pollId]?.option_id)
   }, [dispatch, params, user.votes])
@@ -55,7 +60,8 @@ const VoteForm = () => {
   }
 
   return (
-    <div className='form-container vote'>
+    <>{errorPage ? <ErrorPage /> :
+      <div className='form-container vote'>
       <h1 className='form-title'>Vote!</h1>
       <h3 className='poll-question'>{poll?.question}</h3>
       <div>Choose one option:</div>
@@ -99,6 +105,7 @@ const VoteForm = () => {
         {/* <button className='form-button' onClick={e => handleEdit(e)}>Edit</button> */}
       </div >
     </div >
+    }</>
   );
 }
 

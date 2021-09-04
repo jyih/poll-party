@@ -15,6 +15,7 @@ import Splash from './components/Splash';
 import Footer from './components/footer/Footer';
 import AllPolls from './components/poll/AllPolls';
 import LoginMessage from './components/LoginMessage';
+import ErrorPage from './components/ErrorPage';
 // import PollEdit from './components/poll/PollEdit';
 
 function App() {
@@ -71,6 +72,10 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path='/polls/:pollId/results' exact={true}>
               <PollResults />
+            </ProtectedRoute>
+
+            <ProtectedRoute path='/error' exact={true}>
+              <ErrorPage />
             </ProtectedRoute>
 
           </Switch>

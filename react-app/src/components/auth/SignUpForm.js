@@ -58,10 +58,12 @@ const SignUpForm = () => {
             User Name <input
               type='text'
               name='username'
+              placeholder='(40 chars. max)'
               onChange={updateUsername}
               value={username}
               required={true}
               minLength={3}
+              maxLength={40}
             />
             <div className='error-message' >
               {errors.username}
@@ -100,6 +102,7 @@ const SignUpForm = () => {
             Confirm Password <input
               type='password'
               name='repeat_password'
+              placeholder='••••••'
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}

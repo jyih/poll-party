@@ -9,7 +9,7 @@ const PollList = ({ polls }) => {
         <div>
           {polls?.map((poll, i) => (
             <div key={i}>
-              <NavLink to={`/polls/${poll.id}`}>
+              <NavLink className='poll-link' to={`/polls/${poll.id}`}>
                 {poll.question}
               </NavLink>
             </div>
