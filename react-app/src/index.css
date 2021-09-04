@@ -321,6 +321,14 @@ a:visited {
   width: 75%;
 }
 
+.poll-link{
+  margin: 1em, auto, 1em, auto;
+}
+
+.poll-link:hover{
+  color: #fefefe;
+}
+
 /* .login-message.list-container {
   display: flex;
   flex-direction: column;

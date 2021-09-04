@@ -1,9 +1,17 @@
 <!-- <p align='center'>
   <img src='./react-app/src/assets/images/logo.png' height='200px'>
 </p> -->
+<iframe
+    title='splash-banner'
+    src="https://ntmaker.gfto.ru/newneontexten/?image_height=200&image_width=600&image_font_shadow_width=30&image_font_size=111&image_background_color=03045E&image_text_color=FDFD96&image_font_shadow_color=5E89FF&image_url=https://cdn.mos.cms.futurecdn.net/rumru4mYc6NnKVY9rLeUs8-970-80.jpg.webp&image_text=Poll Party&image_font_family=Nickainley&"
+    frameBorder='no'
+    scrolling='no'
+    width="600"
+    height="200">
+</iframe>
 
 # Poll Party
-Poll Party is a poll creator app. It is a fullstack React App made with a Redux state manager and a backend using Python, Flask, SQL-Alchemy, and PostgresSQL and any other technologies.
+Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
 
 * View the <a href='https://poll-party.herokuapp.com/'>Poll Party</a> App Live
 

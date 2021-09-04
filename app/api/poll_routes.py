@@ -14,6 +14,9 @@ def polls():
 @poll_routes.route('/<int:id>')
 def poll(id):
   poll = Poll.query.get(id)
+  print ('poll:', poll)
+  if not poll:
+    return {'errors': 'Poll not found'}
   return {**poll.get_options() }
 
 @poll_routes.route('/', methods=['POST'])
