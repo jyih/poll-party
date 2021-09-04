@@ -98,18 +98,12 @@ export const deletePoll = (id) => async (dispatch) => {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   })
-  console.log('------------------------------------');
-  console.log(res.ok);
-  console.log('------------------------------------');
   if (res.ok) {
     const data = await res.json();
     dispatch(unset())
     if (data.errors) {
       return data.errors;
     }
-    console.log('------------------------------------');
-    console.log('deletePoll thunk entered');
-    console.log('------------------------------------');
     return data;
   } else {
     return ['An error occurred. Please try again.']
