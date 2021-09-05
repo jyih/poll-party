@@ -79,7 +79,7 @@ To build/run project locally, please follow these steps:
 1. Clone this repository
 
 ```shell
-git clone https://github.com/{github-handle}/poll-party.git
+git clone https://github.com/jyih/poll-party.git
 ```
 
 2. Install Pipfile dependencies and create the virtual environment
