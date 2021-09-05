@@ -11,20 +11,21 @@
 </iframe>
 
 # Poll Party
-Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
+<!-- Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users. -->
+Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes.  Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
 
 * View the <a href='https://poll-party.herokuapp.com/'>Poll Party</a> App Live
 
-* Reference to the Poll Party <a href='https://www.github.com/{github-handle}/poll-party/wiki'>Wiki Docs</a>
+<!-- * Reference to the Poll Party <a href='https://www.github.com/{github-handle}/poll-party/wiki'>Wiki Docs</a> -->
 
 | Table of Contents |
 | ----------------- |
-| 1. [Features](#features) |
+| 1. [Features & Site Walkthrough](#features) |
 | 2. [Installation](#installation) |
-| 3. [Technical Implementation Details](#technical-implementation-details) |
-| 4. [Future Features](#future-features) |
-| 5. [Contact](#contact) |
-| 6. [Special Thanks](#special-thanks) |
+<!-- | 3. [Technical Implementation Details](#technical-implementation-details) | -->
+| 3. [Future Features](#future-features) |
+| 4. [Contact](#contact) |
+| 5. [Special Thanks](#special-thanks) |
 
 
 ## Technologies
@@ -39,36 +40,38 @@ Poll Party is a full stack web application that allows logged in users to create
 * <a href="https://www.heroku.com/home"><img src="https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white" /></a>
 
 
-## Features
+## Features & Site Walkthrough
 
-### Sign In and Sign Up
-<!-- ![Sign Up](./readme-assets/images/signup.jpg) -->
-<!-- ![Login](./readme-assets/images/login.jpg) -->
-Log in as a demo user, or create and log into your own account to see what Poll Party has to offer.
+### Landing Page, Log In, and Sign Up
+Landing page allows users to access login, sign up, or use a Demo account to check out the app and includes a quick breakdown of the app's main features:
+1. Create poll questions
+2. Add custom voting options
+3. Vote on each other's polls
+<!-- ![Splash](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/splash-page.png) -->
 
-### Polls
-Poll Party feed displays all {resource-1-plural}
-Discover and search for new {resource-1-plural}
-![Feed Page](./readme-assets/images/feed.jpg)
 
-### View {resource-1}
-Single {resource-1} of name, photos, {resource-2-plural}
-![{resource-1} Page](./readme-assets/images/{resource-1}-page.jpg)
+### Navigation: Users, All Polls, and Users's Polls
+Once logged in, users can explore the user's own polls, other users and their polls, and create new polls via the navigation bar.
+![Welcome Page](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/welcome-page.png)
 
-### Add {resource-1}
-Add a new {resource-1} to the database
-![Add {resource-1}](./readme-assets/images/{resource-1}-add.jpg)
-Cancel adding {resource-1}
-![Cancel Add {resource-1}](./readme-assets/images/{resource-1}-add-cancel.jpg)
+### Creating a Poll
+Poll creation is quick and straightforward. Only a question and at least two answer options are needed. Users can enter as many answer options as they'd like.
+![Create Poll](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/create-poll.png)
 
-### Create, Read, Update, Delete {resource-1} {resource-2-plural}
-View {resource-2-plural}
-![{resource-2-plural}](./readme-assets/images/{resource-2-plural}.png)
-Edit and Add {resource-2-plural} in the database
-![Edit {resource-2-plural}](./readme-assets/images/{resource-2-plural}-edit.png)
-![Add {resource-2-plural}](./readme-assets/images/{resource-2-plural}-add.png)
+### Voting
+After creating a poll or clicking a poll link, users are directed to the voting page where they may select one option to vote on or proceed directly to the results page. If the poll belongs to the user, the user is presented an option to edit the poll.
+If the user has previously voted on the poll, then the voting form is populated with the user's previous selection. Users may also return to this page to change their vote.
+![Vote](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/vote-poll.png)
 
-* Add any more features here
+### Editing a Poll
+The edit button opens the poll editing form where users can edit the poll title and answer options. Users may also add additional options or delete the poll entirely.
+![Edit Poll](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/edit-poll.png)
+
+### Poll Results
+The results page displays the vote % and count for each answer option. If the user has previously voted on the poll, then a blue check will mark the user's selection.
+![Results](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/results.png)
+
+<!-- * Add any more features here -->
 
 ## Installation
 To build/run project locally, please follow these steps:
@@ -126,7 +129,7 @@ flask run
 npm start
 ```
 
-
+<!-- 
 ## Technical Implementation Details
 
 ### {Detail 1}
@@ -151,24 +154,24 @@ Code snippet is shown here:
 
 ```javascript
 print('add code snippet 1 here')
-```
+``` -->
 
 
 ## Future Features
 
-1. __Search__ - search {resource-1-plural}
+1. __Search__ - search by poll title
 
-2. __Second Feature__ - second feature details
+2. __Graphed Vote Results__ - bar chart representation of vote %
 
 
 ## Contact
 
 ### {Your Name}
-<a href="https://www.linkedin.com/in/johnathanyih/"><img src="./readme-assets/logos/linkedin-logo.png" height="28" align="middle" /></a>
+<a href="https://www.linkedin.com/in/johnathanyih/"><img src="https://poll-party.s3.us-west-1.amazonaws.com/linkedin-logo.png" height="32" align="middle" /></a>
 <!-- <a href="https://angel.co/u/{angel-list-handle}"><img src="./readme-assets/logos/angellist-logo.png" height="28" align="middle" /></a> -->
-<a href="https://github.com/jyih"><img src="./readme-assets/logos/github-logo.png" height="38" align="middle" /></a>
+<a href="https://github.com/jyih"><img src="https://poll-party.s3.us-west-1.amazonaws.com/GitHub-Mark-Light-32px.png" height="32" align="middle" /></a>
+<a href="johnathanyih@gmail.com"><img src="https://poll-party.s3.us-west-1.amazonaws.com/email-icon-gray-circle.png" height="32" align="middle" /></a>
 
-johnathanyih@gmail.com
 
 
 ## Special Thanks
