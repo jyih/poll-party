@@ -1,16 +1,16 @@
 <!-- <p align='center'>
   <img src='./react-app/src/assets/images/logo.png' height='200px'>
 </p> -->
-<iframe
+<!-- <iframe
     title='splash-banner'
-    src="https://ntmaker.gfto.ru/newneontexten/?image_height=200&image_width=600&image_font_shadow_width=30&image_font_size=111&image_background_color=03045E&image_text_color=FDFD96&image_font_shadow_color=5E89FF&image_url=https://cdn.mos.cms.futurecdn.net/rumru4mYc6NnKVY9rLeUs8-970-80.jpg.webp&image_text=Poll Party&image_font_family=Nickainley&"
+    src="https://ntmaker.gfto.ru/newneontexten/?image_height=200&image_width=600&image_font_shadow_width=30&image_font_size=111&image_background_color=03045E&image_text_color=FDFD96&image_font_shadow_color=5E89FF&image_url=https://cdn.mos.cms.futurecdn.net/rumru4mYc6NnKVY9rLeUs8-970-80.jpg.webp&image_text=Poll_Party&image_font_family=Nickainley&"
     frameBorder='no'
     scrolling='no'
     width="600"
     height="200">
-</iframe>
+</iframe> -->
 
-# Poll Party
+# <img src="https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png" height="32" align="top" /> Poll Party
 <!-- Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users. -->
 Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes.  Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
 
@@ -20,14 +20,14 @@ Poll Party is a full stack web application that allows logged in users to create
 
 | Table of Contents |
 | ----------------- |
-| 1. [Features & Site Walkthrough](#features) |
+| 1. [Features and Site Walkthrough](#features-and-site-walkthrough) |
 | 2. [Installation](#installation) |
-<!-- | 3. [Technical Implementation Details](#technical-implementation-details) | -->
 | 3. [Future Features](#future-features) |
 | 4. [Contact](#contact) |
 | 5. [Special Thanks](#special-thanks) |
+<!-- | 3. [Technical Implementation Details](#technical-implementation-details) | -->
 
-
+---
 ## Technologies
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=JavaScript&logoColor=333333" /></a>
 * <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/-PostgreSQL-336791?logo=PostgreSQL&logoColor=white" /></a>
@@ -39,11 +39,11 @@ Poll Party is a full stack web application that allows logged in users to create
 * <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" /></a>
 * <a href="https://www.heroku.com/home"><img src="https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white" /></a>
 
-
-## Features & Site Walkthrough
+---
+## Features and Site Walkthrough
 
 ### Landing Page, Log In, and Sign Up
-Landing page allows users to access login, sign up, or use a Demo account to check out the app and includes a quick breakdown of the app's main features:
+The landing page allows users to access login, sign up, or use a Demo account to check out the app and includes a quick breakdown of the app's main features:
 1. Create poll questions
 2. Add custom voting options
 3. Vote on each other's polls
@@ -68,10 +68,10 @@ The edit button opens the poll editing form where users can edit the poll title 
 ![Edit Poll](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/edit-poll.png)
 
 ### Poll Results
-The results page displays the vote % and count for each answer option. If the user has previously voted on the poll, then a blue check will mark the user's selection.
+The results page displays the vote % and count for each answer option. If the user has previously voted on the poll, then a blue check will mark the user's selection.  
 ![Results](https://poll-party.s3.us-west-1.amazonaws.com/readme-assets/results.png)
 
-<!-- * Add any more features here -->
+---
 
 ## Installation
 To build/run project locally, please follow these steps:
@@ -128,6 +128,8 @@ flask run
 ```javascript
 npm start
 ```
+---
+
 
 <!-- 
 ## Technical Implementation Details
@@ -156,23 +158,21 @@ Code snippet is shown here:
 print('add code snippet 1 here')
 ``` -->
 
-
 ## Future Features
 
 1. __Search__ - search by poll title
 
-2. __Graphed Vote Results__ - bar chart representation of vote %
-
+2. __Vote Results Graph__ - bar chart representation of vote % 
+---
 
 ## Contact
 
-### {Your Name}
+### Johnathan Yih
 <a href="https://www.linkedin.com/in/johnathanyih/"><img src="https://poll-party.s3.us-west-1.amazonaws.com/linkedin-logo.png" height="32" align="middle" /></a>
-<!-- <a href="https://angel.co/u/{angel-list-handle}"><img src="./readme-assets/logos/angellist-logo.png" height="28" align="middle" /></a> -->
 <a href="https://github.com/jyih"><img src="https://poll-party.s3.us-west-1.amazonaws.com/GitHub-Mark-Light-32px.png" height="32" align="middle" /></a>
 <a href="johnathanyih@gmail.com"><img src="https://poll-party.s3.us-west-1.amazonaws.com/email-icon-gray-circle.png" height="32" align="middle" /></a>
 
-
+---
 
 ## Special Thanks
 * Fellow peers who have given me support and community: [Ji](https://github.com/ji-k), [Brandon](https://github.com/Omstachu), [Michelle](https://github.com/michellekontoff), [Nico](https://github.com/nicopierson), and [Monte](https://github.com/theflaggship)
