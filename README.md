@@ -10,7 +10,7 @@
     height="200">
 </iframe> -->
 
-# <img src="https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png" height="28" align="top" /> Poll Party
+# <img src="https://poll-party.s3.us-west-1.amazonaws.com/beach-ball-icon.png" height="32" align="top" /> Poll Party
 <!-- Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users. -->
 Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes.  Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
 
