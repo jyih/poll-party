@@ -110,7 +110,7 @@ flask db migrate -m "<enter migration message>"
 
 6. Apply the latest migration to the database by running in the terminal:
 ```shell
-flask db  upgrade
+flask db upgrade
 ```
 
 7. In the root folder, seed the database by running in the terminal:
