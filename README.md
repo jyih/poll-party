@@ -103,7 +103,7 @@ npm install
 pipenv shell
 ```
 
-5. If needed, in the root folder, generate an updated migration in the database by running in the terminal:
+5. If needed, in the root folder, generate an updated migration for the database by running in the terminal:
 ```shell
 flask db migrate -m "<enter migration message>"
 ```
