@@ -6,13 +6,21 @@ from app.forms import WatchlistForm
 watchlist_routes = Blueprint('watchlists', __name__)
 
 @watchlist_routes.route('/')
-@login_required
+# @login_required
 def watchlists():
   watchlists = Watchlist.query.all()
   return {watchlist.to_dict()['id']:watchlist.to_dict() for watchlist in watchlists}
 
+@watchlist_routes.route('/')
+# @login_required
+def watchlist():
+  data = request.json
+  id = data['watchlist_id']
+  watchlist = Watchlist.query.get(id)
+  return watchlist.to_dict() if watchlist else none
+
 @watchlist_routes.route('/', methods=['POST'])
-@login_required
+# @login_required
 def watchlist_add():
   data = request.json
   form = WatchlistForm()
@@ -28,7 +36,7 @@ def watchlist_add():
   return form.errors
 
 @watchlist_routes.route('/', methods=['DELETE'])
-@login_required
+# @login_required
 def watchlist_remove():
   data = request.json
   id = data['watchlist_id']
