@@ -5,6 +5,8 @@ from app.forms import PollForm
 
 poll_routes = Blueprint('polls', __name__)
 
+#To be added: Backend User ID Validation for Edit/Delete features
+
 @poll_routes.route('/')
 def polls():
   polls = Poll.query.all()
