@@ -1,0 +1,3 @@
+const SET_WATCHLIST = 'watchlist/SET_WATCHLIST';
+const UNSET_WATCHLIST = 'watchlist/UNSET_WATCHLIST';
+

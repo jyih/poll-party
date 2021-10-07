@@ -1,4 +1,3 @@
-
 const SET_POLL = 'poll/SET_POLL';
 const UNSET_POLL = 'poll/UNSET_POLL';
 
