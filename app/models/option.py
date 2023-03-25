@@ -1,12 +1,14 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 class Option(db.Model):
     __tablename__ = 'options'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(db.String(255), nullable=False)
-    poll_id = db.Column(db.Integer, db.ForeignKey('polls.id'), nullable=False)
+    poll_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('polls.id')), nullable=False)
 
     votes = db.relationship('Vote', cascade="all, delete, delete-orphan", order_by='Vote.id')
 

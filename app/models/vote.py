@@ -1,13 +1,15 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 class Vote(db.Model):
     __tablename__ = 'votes'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    option_id = db.Column(db.Integer, db.ForeignKey('options.id'), nullable=False)
-    poll_id = db.Column(db.Integer, db.ForeignKey('polls.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    option_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('options.id')), nullable=False)
+    poll_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('polls.id')), nullable=False)
 
     def to_dict(self):
         return {
