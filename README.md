@@ -14,7 +14,7 @@
 <!-- Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes. Results of the polls are updated in real time. Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users. -->
 Poll Party is a full stack web application that allows logged in users to create public polls where other logged in users of the website are able to cast their votes.  Poll Party was created as a solution for audience engagement, interactive meetings, and scaled feedback. Use Poll Party for fun quizzes, collect thoughts and opinions, and to show your audience you are listening by allowing them to ask questions and receive answers from other users.
 
-* View the <a href='https://poll-party.herokuapp.com/'>Poll Party</a> App Live
+* View the <a href='https://poll-party.onrender.com/'>Poll Party</a> App Live
 
 <!-- * Reference to the Poll Party <a href='https://www.github.com/{github-handle}/poll-party/wiki'>Wiki Docs</a> -->
 
